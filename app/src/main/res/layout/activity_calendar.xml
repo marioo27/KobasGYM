@@ -16,7 +16,7 @@
         app:titleTextColor="@color/white"
         app:navigationIcon="@drawable/ic_arrow_back"/>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -130,6 +130,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="2dp"
                 app:cardBackgroundColor="@color/blue_surface_light"
@@ -148,7 +149,36 @@
 
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- All Logs List Header -->
+            <TextView
+                android:id="@+id/tvLogsHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Historial de Entrenamientos"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/blue_primary_dark"
+                android:layout_marginBottom="12dp" />
+
+            <!-- RecyclerView of All Workout Logs -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvWorkoutLogs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
+
+            <TextView
+                android:id="@+id/tvEmptyLogs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aún no has registrado ningún entrenamiento."
+                android:textSize="14sp"
+                android:textColor="@color/text_secondary"
+                android:gravity="center"
+                android:padding="16dp"
+                android:visibility="gone" />
+
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

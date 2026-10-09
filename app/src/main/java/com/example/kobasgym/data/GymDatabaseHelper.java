@@ -16,7 +16,7 @@ import java.util.List;
 public class GymDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "kobasgym.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Tables
     private static final String TABLE_ROUTINES = "routines";
@@ -90,11 +90,15 @@ public class GymDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SET_WEIGHTS);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_VARIATIONS);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_EXERCISES);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ROUTINES);
-        onCreate(db);
+        if (oldVersion < 2) {
+            db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_WORKOUT_LOGS + " ("
+                    + "date TEXT PRIMARY KEY, "
+                    + "routine_id TEXT, "
+                    + "routine_name TEXT, "
+                    + "notes TEXT, "
+                    + "timestamp INTEGER"
+                    + ");");
+        }
     }
 
     public boolean isDatabaseEmpty() {
@@ -453,43 +457,44 @@ public class GymDatabaseHelper extends SQLiteOpenHelper {
 
     public com.example.kobasgym.model.WorkoutLog getWorkoutLog(String date) {
         if (date == null) return null;
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.query(TABLE_WORKOUT_LOGS, null, "date = ?", new String[]{date}, null, null, null);
-        com.example.kobasgym.model.WorkoutLog log = null;
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                String rId = cursor.getString(cursor.getColumnIndexOrThrow("routine_id"));
-                String rName = cursor.getString(cursor.getColumnIndexOrThrow("routine_name"));
-                String notes = cursor.getString(cursor.getColumnIndexOrThrow("notes"));
-                long ts = cursor.getLong(cursor.getColumnIndexOrThrow("timestamp"));
-                log = new com.example.kobasgym.model.WorkoutLog(date, rId, rName, notes, ts);
+        try {
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor cursor = db.query(TABLE_WORKOUT_LOGS, null, "date = ?", new String[]{date}, null, null, null);
+            com.example.kobasgym.model.WorkoutLog log = null;
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    String rId = cursor.getString(cursor.getColumnIndexOrThrow("routine_id"));
+                    String rName = cursor.getString(cursor.getColumnIndexOrThrow("routine_name"));
+                    String notes = cursor.getString(cursor.getColumnIndexOrThrow("notes"));
+                    long ts = cursor.getLong(cursor.getColumnIndexOrThrow("timestamp"));
+                    log = new com.example.kobasgym.model.WorkoutLog(date, rId, rName, notes, ts);
+                }
+                cursor.close();
             }
-            cursor.close();
+            return log;
+        } catch (Exception e) {
+            return null;
         }
-        return log;
     }
 
     public java.util.Map<String, com.example.kobasgym.model.WorkoutLog> getAllWorkoutLogsMap() {
         java.util.Map<String, com.example.kobasgym.model.WorkoutLog> map = new java.util.HashMap<>();
-        SQLiteDatabase db = getReadableDatabase();
-        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_WORKOUT_LOGS + " ("
-                + "date TEXT PRIMARY KEY, "
-                + "routine_id TEXT, "
-                + "routine_name TEXT, "
-                + "notes TEXT, "
-                + "timestamp INTEGER"
-                + ");");
-        Cursor cursor = db.query(TABLE_WORKOUT_LOGS, null, null, null, null, null, null);
-        if (cursor != null) {
-            while (cursor.moveToNext()) {
-                String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
-                String rId = cursor.getString(cursor.getColumnIndexOrThrow("routine_id"));
-                String rName = cursor.getString(cursor.getColumnIndexOrThrow("routine_name"));
-                String notes = cursor.getString(cursor.getColumnIndexOrThrow("notes"));
-                long ts = cursor.getLong(cursor.getColumnIndexOrThrow("timestamp"));
-                map.put(date, new com.example.kobasgym.model.WorkoutLog(date, rId, rName, notes, ts));
+        try {
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor cursor = db.query(TABLE_WORKOUT_LOGS, null, null, null, null, null, null);
+            if (cursor != null) {
+                while (cursor.moveToNext()) {
+                    String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
+                    String rId = cursor.getString(cursor.getColumnIndexOrThrow("routine_id"));
+                    String rName = cursor.getString(cursor.getColumnIndexOrThrow("routine_name"));
+                    String notes = cursor.getString(cursor.getColumnIndexOrThrow("notes"));
+                    long ts = cursor.getLong(cursor.getColumnIndexOrThrow("timestamp"));
+                    map.put(date, new com.example.kobasgym.model.WorkoutLog(date, rId, rName, notes, ts));
+                }
+                cursor.close();
             }
-            cursor.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return map;
     }
