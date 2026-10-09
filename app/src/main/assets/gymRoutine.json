@@ -1,0 +1,727 @@
+{
+    "rutinas": [
+        {
+            "id": "rutina_tren_superior",
+            "nombre": "Tren superior",
+            "descripcion": "Lunes y Jueves",
+            "ejercicios": [
+                {
+                    "id": "ejercicio_jalon",
+                    "nombre": "Jalón",
+                    "variaciones": [
+                        {
+                            "id": "variacion_jalon_maquina",
+                            "nombre": "Máquina",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 50,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 50,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 50,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        },
+                        {
+                            "id": "variacion_jalon_polea",
+                            "nombre": "Polea",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        }
+                    ]
+                },
+                {
+                    "id": "ejercicio_remo",
+                    "nombre": "Remo",
+                    "variaciones": [
+                        {
+                            "id": "variacion_remo_gironda",
+                            "nombre": "Gironda",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        },
+                        {
+                            "id": "variacion_remo_maquina",
+                            "nombre": "Máquina",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 50,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 50,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 50,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        }
+                    ]
+                },
+                {
+                    "id": "ejercicio_press_pecho",
+                    "nombre": "Press de pecho",
+                    "variaciones": [
+                        {
+                            "id": "variacion_press_pecho_maquina",
+                            "nombre": "Máquina",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        },
+                        {
+                            "id": "variacion_press_pecho_mancuernas",
+                            "nombre": "Press plano con mancuernas",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 10,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 10,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 10,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        }
+                    ]
+                },
+                {
+                    "id": "ejercicio_press_hombro",
+                    "nombre": "Press de hombro",
+                    "variaciones": [
+                        {
+                            "id": "variacion_press_hombro_maquina",
+                            "nombre": "Máquina",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        },
+                        {
+                            "id": "variacion_press_hombro_mancuernas",
+                            "nombre": "Mancuernas",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 10,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 10,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 10,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        }
+                    ]
+                },
+                {
+                    "id": "ejercicio_aperturas_pecho",
+                    "nombre": "Aperturas de pecho",
+                    "variaciones": [
+                        {
+                            "id": "variacion_aperturas_pecho_poleas",
+                            "nombre": "Poleas",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        },
+                        {
+                            "id": "variacion_aperturas_pecho_mancuernas",
+                            "nombre": "Mancuernas en banco plano",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 10,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 10,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg":10,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        }
+                    ]
+                },
+                {
+                    "id": "ejercicio_elevaciones_laterales",
+                    "nombre": "Elevaciones laterales",
+                    "variaciones": [
+                        {
+                            "id": "variacion_elevaciones_laterales_polea",
+                            "nombre": "Polea",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        },
+                        {
+                            "id": "variacion_elevaciones_laterales_mancuernas",
+                            "nombre": "Mancuernas",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 7.5,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 7.5,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 7.5,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        }
+                    ]
+                },
+                {
+                    "id": "ejercicio_biceps",
+                    "nombre": "Bíceps",
+                    "variaciones": [
+                        {
+                            "id": "variacion_biceps_curl_mancuernas",
+                            "nombre": "Curl con mancuernas",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 7.5,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 7.5,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 7.5,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        },
+                        {
+                            "id": "variacion_biceps_arana_barra_z",
+                            "nombre": "Araña con barra Z",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        },
+                        {
+                            "id": "variacion_biceps_maquina",
+                            "nombre": "Máquina",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        }
+                    ]
+                },
+                {
+                    "id": "ejercicio_triceps",
+                    "nombre": "Tríceps",
+                    "variaciones": [
+                        {
+                            "id": "variacion_triceps_skull_crusher",
+                            "nombre": "Skull crusher",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 7.5,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 7.5,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 7.5,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        },
+                        {
+                            "id": "variacion_triceps_extension_polea",
+                            "nombre": "Extensión en polea",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        },
+                        {
+                            "id": "variacion_triceps_extension_cabeza",
+                            "nombre": "Extensión por encima de la cabeza",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        }
+                    ]
+                }
+            ],
+            "ejercicios_extra": [
+                {
+                    "id": "ejercicio_extra_martillo",
+                    "nombre": "Martillo",
+                    "variaciones": [
+                        {
+                            "id": "variacion_martillo_mancuernas",
+                            "nombre": "Con mancuernas",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        },
+                        {
+                            "id": "variacion_martillo_polea",
+                            "nombre": "Polea",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        }
+                    ]
+                },
+                {
+                    "id": "ejercicio_extra_face_pull",
+                    "nombre": "Face pull",
+                    "variaciones": [
+                        {
+                            "id": "variacion_face_pull",
+                            "nombre": "Face pull",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "rutina_tren_inferior",
+            "nombre": "Tren inferior",
+            "descripcion": "Martes y Viernes",
+            "ejercicios": [
+                {
+                    "id": "ejercicio_sentadilla_asistida",
+                    "nombre": "Sentadilla asistida",
+                    "notas": "",
+                    "variaciones": [
+                        {
+                            "id": "variacion_sentadilla_asistida",
+                            "nombre": "Sentadilla asistida",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        },
+                        {
+                            "id": "variacion_sentadilla_prensa",
+                            "nombre": "Prensa",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 17.5,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 17.5,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 17.5,
+                                    "repeticiones": 10
+                                }
+                            ]
+                        },
+                        {
+                            "id": "variacion_sentadilla_jaca",
+                            "nombre": "Jaca",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        }
+                    ]
+                },
+                {
+                    "id": "ejercicio_bulgaras",
+                    "nombre": "Búlgaras",
+                    "variaciones": [
+                        {
+                            "id": "variacion_bulgaras_split_squat",
+                            "nombre": "Split squat estático",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 7.5,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 7.5,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 7.5,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        }
+                    ]
+                },
+                {
+                    "id": "ejercicio_curl_pierna",
+                    "nombre": "Curl de pierna",
+                    "variaciones": [
+                        {
+                            "id": "variacion_curl_pierna",
+                            "nombre": "Curl de pierna",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        }
+                    ]
+                },
+                {
+                    "id": "ejercicio_extension_cuadriceps",
+                    "nombre": "Extensión de cuádriceps",
+                    "variaciones": [
+                        {
+                            "id": "variacion_extension_cuadriceps",
+                            "nombre": "Extensión de cuádriceps",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 27,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 27,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 27,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        }
+                    ]
+                },
+                {
+                    "id": "ejercicio_abductores",
+                    "nombre": "Abductores",
+                    "variaciones": [
+                        {
+                            "id": "variacion_abductores",
+                            "nombre": "Abductores",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 45,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 45,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 45,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
+                        }
+                    ]
+                }
+            ],
+            "ejercicios_extra": []
+        }
+    ]
+}

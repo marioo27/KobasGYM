@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Koba\'s GYM</string>
+
+    <!-- Welcome Screen -->
+    <string name="welcome_title">Koba\'s GYM</string>
+    <string name="welcome_subtitle">Tu compañero definitivo de rutinas de gimnasio. Registra, edita y domina tus entrenamientos.</string>
+    <string name="btn_start">Comenzar</string>
+    <string name="lang_en">English</string>
+    <string name="lang_es">Español</string>
+    <string name="select_language">Idioma</string>
+
+    <!-- Main Options Screen -->
+    <string name="options_title">Opciones Principales</string>
+    <string name="btn_see_routines">Ver mis rutinas</string>
+    <string name="btn_start_new">Crear una nueva</string>
+    <string name="dialog_create_routine_title">Crear Nueva Rutina</string>
+
+    <!-- Routine Strings -->
+    <string name="routines_title">Mis Rutinas</string>
+    <string name="empty_routines">Todavía no tienes ninguna rutina.</string>
+    <string name="exercises_count_format">%d ejercicios</string>
+    <string name="btn_add_routine">Añadir Rutina</string>
+    <string name="action_open">Abrir</string>
+    <string name="action_edit">Editar</string>
+    <string name="action_delete">Eliminar</string>
+    <string name="dialog_delete_routine_title">Eliminar Rutina</string>
+    <string name="dialog_delete_routine_msg">¿Estás seguro de que deseas eliminar \"%s\"?</string>
+    <string name="dialog_edit_routine_title">Editar Rutina</string>
+
+    <!-- Routine Form Hints -->
+    <string name="hint_routine_name">Nombre de la rutina</string>
+    <string name="hint_routine_description">Descripción</string>
+    <string name="hint_muscle_group">Categoría / Grupo muscular</string>
+    <string name="error_empty_routine_name">El nombre de la rutina no puede estar vacío.</string>
+
+    <!-- Routine Detail & Exercises -->
+    <string name="exercises_title">Ejercicios</string>
+    <string name="btn_add_exercise">Añadir Ejercicio</string>
+    <string name="variations_count_format">%d variaciones</string>
+    <string name="sets_reps_format">%d series × %d reps</string>
+    <string name="weight_format">%s %s</string>
+    <string name="dialog_create_exercise_title">Añadir Ejercicio</string>
+    <string name="dialog_edit_exercise_title">Editar Ejercicio</string>
+    <string name="hint_exercise_name">Nombre del ejercicio</string>
+    <string name="hint_exercise_muscle_group">Grupo muscular</string>
+    <string name="error_empty_exercise_name">El nombre del ejercicio no puede estar vacío.</string>
+    <string name="dialog_delete_exercise_title">Eliminar Ejercicio</string>
+    <string name="dialog_delete_exercise_msg">¿Estás seguro de que deseas eliminar \"%s\"?</string>
+    <string name="empty_exercises">Aún no hay ejercicios añadidos a esta rutina.</string>
+
+    <!-- Variations Screen -->
+    <string name="variations_title">Variaciones</string>
+    <string name="btn_add_variation">Añadir Variación</string>
+    <string name="empty_variations">Aún no hay variaciones añadidas para este ejercicio.</string>
+    <string name="dialog_delete_variation_title">Eliminar Variación</string>
+    <string name="dialog_delete_variation_msg">¿Estás seguro de que deseas eliminar \"%s\"?</string>
+    <string name="rest_seconds_format">Descanso: %d s</string>
+
+    <!-- Variation Edit / Detail Form -->
+    <string name="edit_variation_title">Editar Variación</string>
+    <string name="add_variation_title">Nueva Variación</string>
+    <string name="hint_variation_name">Nombre de la variación</string>
+    <string name="hint_sets">Series</string>
+    <string name="hint_repetitions">Repeticiones</string>
+    <string name="hint_weight">Peso</string>
+    <string name="hint_weight_unit">Unidad de peso</string>
+    <string name="hint_rest_seconds">Tiempo de descanso (segundos)</string>
+    <string name="hint_notes">Notas</string>
+
+    <!-- Buttons & Dialog Actions -->
+    <string name="btn_save">Guardar</string>
+    <string name="btn_cancel">Cancelar</string>
+    <string name="btn_delete">Eliminar</string>
+    <string name="btn_create">Crear</string>
+
+    <!-- Errors & Messages -->
+    <string name="error_empty_variation_name">El nombre de la variación no puede estar vacío.</string>
+    <string name="error_invalid_sets">Las series deben ser mayores que 0.</string>
+    <string name="error_invalid_reps">Las repeticiones deben ser mayores que 0.</string>
+    <string name="error_invalid_weight">El peso debe ser 0 o mayor.</string>
+    <string name="error_invalid_rest">El tiempo de descanso debe ser 0 o mayor.</string>
+    <string name="msg_saved_successfully">Guardado correctamente.</string>
+    <string name="msg_deleted_successfully">Eliminado correctamente.</string>
+    <string name="msg_routine_duplicated">Rutina duplicada correctamente.</string>
+
+    <!-- Calendar Strings -->
+    <string name="calendar_title">Mi Calendario</string>
+    <string name="btn_calendar">Calendario de Entrenamientos</string>
+    <string name="label_did_workout">¿Entrenaste este día?</string>
+    <string name="label_select_routine">Selecciona la rutina realizada:</string>
+    <string name="label_log_notes">Notas opcionales</string>
+    <string name="btn_delete_log">Eliminar registro</string>
+    <string name="text_workout_logged">Entrenamiento registrado</string>
+    <string name="text_no_workout">Sin entrenamiento registrado</string>
+    <string name="text_monthly_stats">Resumen de este mes: %d días entrenados</string>
+
+    <!-- Default Initial Routine & Exercise Translation Resources -->
+    <string name="routine_upper_body">Tren superior</string>
+    <string name="routine_lower_body">Tren inferior</string>
+    <string name="routine_extras">Extras</string>
+
+    <string name="routine_desc_upper_body">Lunes y Miércoles</string>
+    <string name="routine_desc_lower_body">Martes y Jueves</string>
+    <string name="routine_desc_extras">Ejercicios accesorios para hombros y brazos.</string>
+
+    <string name="category_upper_body">Tren superior</string>
+    <string name="category_lower_body">Tren inferior</string>
+    <string name="category_extras">Extras</string>
+
+    <string name="muscle_back">Espalda</string>
+    <string name="muscle_chest">Pecho</string>
+    <string name="muscle_shoulders">Hombros</string>
+    <string name="muscle_arms">Brazos</string>
+    <string name="muscle_legs">Piernas</string>
+
+    <!-- Exercises -->
+    <string name="ex_pull_down">Jalón</string>
+    <string name="ex_row">Remo</string>
+    <string name="ex_chest_press">Press de pecho</string>
+    <string name="ex_shoulder_press">Press de hombro</string>
+    <string name="ex_chest_fly">Aperturas de pecho</string>
+    <string name="ex_lateral_raise">Elevaciones laterales</string>
+    <string name="ex_biceps">Bíceps</string>
+    <string name="ex_triceps">Tríceps</string>
+    <string name="ex_assisted_squat">Sentadilla asistida</string>
+    <string name="ex_bulgarian_split_squat">Búlgaras</string>
+    <string name="ex_leg_curl">Curl de pierna</string>
+    <string name="ex_leg_extension">Extensión de cuádriceps</string>
+    <string name="ex_hip_abductor">Abductores</string>
+    <string name="ex_hammer_curl">Martillo</string>
+    <string name="ex_face_pull">Face pull</string>
+
+    <!-- Variations -->
+    <string name="var_machine">Máquina</string>
+    <string name="var_cable">Polea</string>
+    <string name="var_cables">Poleas</string>
+    <string name="var_gironda">Gironda</string>
+    <string name="var_flat_dumbbell_press">Press plano con mancuernas</string>
+    <string name="var_dumbbells">Mancuernas</string>
+    <string name="var_flat_bench_dumbbells">Mancuernas en banco plano</string>
+    <string name="var_dumbbell_curl">Curl con mancuernas</string>
+    <string name="var_ez_bar_spider_curl">Curl araña con barra Z</string>
+    <string name="var_machine_curl">Curl en máquina</string>
+    <string name="var_skull_crusher">Skull Crusher</string>
+    <string name="var_cable_extension">Extensión en polea</string>
+    <string name="var_overhead_extension">Extensión por encima de la cabeza</string>
+    <string name="var_assisted_squat_machine">Máquina de sentadilla asistida</string>
+    <string name="var_smith_machine_squat">Sentadilla en multipower</string>
+    <string name="var_bodyweight_assisted_squat">Sentadilla asistida con peso corporal</string>
+    <string name="var_bodyweight_bulgarian">Búlgara con peso corporal</string>
+    <string name="var_dumbbell_bulgarian">Búlgara con mancuernas</string>
+    <string name="var_smith_bulgarian">Búlgara en multipower</string>
+    <string name="var_lying_leg_curl">Curl tumbado</string>
+    <string name="var_seated_leg_curl">Curl sentado</string>
+    <string name="var_standing_leg_curl">Curl de pie</string>
+    <string name="var_seated_leg_extension">Extensión sentado</string>
+    <string name="var_single_leg_extension">Extensión unilateral</string>
+    <string name="var_slow_tempo_leg_extension">Extensión con tempo lento</string>
+    <string name="var_seated_hip_abductor">Abductor sentado</string>
+    <string name="var_standing_cable_abduction">Abducción de pie en polea</string>
+    <string name="var_resistance_band_abduction">Abducción con banda elástica</string>
+    <string name="var_rope_hammer_curl">Curl martillo con cuerda</string>
+    <string name="var_rope_face_pull">Face pull con cuerda</string>
+    <string name="var_high_cable_face_pull">Face pull alto en polea</string>
+    <string name="var_single_arm_face_pull">Face pull unilateral</string>
+
+    <string name="note_bodyweight">Peso corporal</string>
+
+    <!-- Additional Feature Strings -->
+    <string name="text_extra_badge">EXTRA</string>
+    <string name="hint_extra_exercise">Ejercicio extra</string>
+    <string name="btn_delete_routine">Eliminar Rutina</string>
+    <string name="btn_duplicate_routine">Duplicar Rutina</string>
+    <string name="btn_delete_exercise">Eliminar Ejercicio</string>
+    <string name="label_set_weights">Pesos por serie</string>
+    <string name="label_set_number">Serie %d</string>
+    <string name="msg_no_lower_body_variations">Los ejercicios de tren inferior no tienen variaciones.</string>
+</resources>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:icon="@mipmap/ic_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_logo_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.KobasGYM">
+
+        <!-- Welcome Screen (Launcher) -->
+        <activity
+            android:name=".ui.WelcomeActivity"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Main Options Screen -->
+        <activity
+            android:name=".ui.MainOptionsActivity"
+            android:exported="false"
+            android:label="@string/options_title" />
+
+        <!-- Routines List Screen -->
+        <activity
+            android:name=".ui.RoutinesListActivity"
+            android:exported="false"
+            android:label="@string/routines_title" />
+
+        <!-- Routine Detail Screen -->
+        <activity
+            android:name=".ui.RoutineDetailActivity"
+            android:exported="false"
+            android:label="@string/app_name" />
+
+        <!-- Variations List Screen -->
+        <activity
+            android:name=".ui.VariationsListActivity"
+            android:exported="false"
+            android:label="@string/variations_title" />
+
+        <!-- Variation Detail / Edit Screen -->
+        <activity
+            android:name=".ui.VariationDetailActivity"
+            android:exported="false"
+            android:label="@string/edit_variation_title" />
+
+        <!-- Calendar Screen -->
+        <activity
+            android:name=".ui.CalendarActivity"
+            android:exported="false"
+            android:label="@string/calendar_title" />
+
+    </application>
+
+</manifest>
