@@ -62,6 +62,9 @@ public class Exercise implements Serializable {
     }
 
     public String getDisplayName(Context context) {
+        if (name != null && !name.trim().isEmpty()) {
+            return name;
+        }
         if (nameResId != 0 && context != null) {
             try {
                 return context.getString(nameResId);
@@ -69,7 +72,7 @@ public class Exercise implements Serializable {
                 // fallback
             }
         }
-        return name != null ? name : "";
+        return "";
     }
 
     public String getMuscleGroup() {

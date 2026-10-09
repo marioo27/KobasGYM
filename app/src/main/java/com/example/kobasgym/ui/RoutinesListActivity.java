@@ -154,10 +154,14 @@ public class RoutinesListActivity extends BaseActivity implements RoutineAdapter
                 .create();
 
         dialog.show();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.WHITE));
+        }
 
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
             String name = dialogBinding.etRoutineName.getText() != null ? dialogBinding.etRoutineName.getText().toString().trim() : "";
             String desc = dialogBinding.etRoutineDescription.getText() != null ? dialogBinding.etRoutineDescription.getText().toString().trim() : "";
+            String abbrev = dialogBinding.etRoutineAbbreviation.getText() != null ? dialogBinding.etRoutineAbbreviation.getText().toString().trim() : "";
 
             if (TextUtils.isEmpty(name)) {
                 dialogBinding.tilRoutineName.setError(getString(R.string.error_empty_routine_name));
@@ -172,6 +176,7 @@ public class RoutinesListActivity extends BaseActivity implements RoutineAdapter
                     desc, 0,
                     "", 0,
                     R.drawable.ic_dumbbell,
+                    abbrev,
                     new ArrayList<>()
             );
 

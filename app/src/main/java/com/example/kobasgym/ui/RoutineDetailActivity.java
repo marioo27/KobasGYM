@@ -165,6 +165,7 @@ public class RoutineDetailActivity extends BaseActivity implements ExerciseAdapt
 
         dialogBinding.etRoutineName.setText(currentRoutine.getDisplayName(this));
         dialogBinding.etRoutineDescription.setText(currentRoutine.getDisplayDescription(this));
+        dialogBinding.etRoutineAbbreviation.setText(currentRoutine.getAbbreviation());
         dialogBinding.btnDeleteRoutine.setVisibility(View.VISIBLE);
         dialogBinding.btnDuplicateRoutine.setVisibility(View.VISIBLE);
 
@@ -176,6 +177,9 @@ public class RoutineDetailActivity extends BaseActivity implements ExerciseAdapt
                 .create();
 
         dialog.show();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.WHITE));
+        }
 
         dialogBinding.btnDeleteRoutine.setOnClickListener(v -> {
             dialog.dismiss();
@@ -192,6 +196,7 @@ public class RoutineDetailActivity extends BaseActivity implements ExerciseAdapt
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
             String name = dialogBinding.etRoutineName.getText() != null ? dialogBinding.etRoutineName.getText().toString().trim() : "";
             String desc = dialogBinding.etRoutineDescription.getText() != null ? dialogBinding.etRoutineDescription.getText().toString().trim() : "";
+            String abbrev = dialogBinding.etRoutineAbbreviation.getText() != null ? dialogBinding.etRoutineAbbreviation.getText().toString().trim() : "";
 
             if (TextUtils.isEmpty(name)) {
                 dialogBinding.tilRoutineName.setError(getString(R.string.error_empty_routine_name));
@@ -204,6 +209,7 @@ public class RoutineDetailActivity extends BaseActivity implements ExerciseAdapt
             currentRoutine.setNameResId(0);
             currentRoutine.setDescription(desc);
             currentRoutine.setDescriptionResId(0);
+            currentRoutine.setAbbreviation(abbrev);
 
             WorkoutDataManager.getInstance().updateRoutine(currentRoutine);
             loadRoutineData();

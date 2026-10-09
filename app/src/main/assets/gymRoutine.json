@@ -2,8 +2,9 @@
     "rutinas": [
         {
             "id": "rutina_tren_superior",
-            "nombre": "Tren superior",
+            "nombre": "Tren Superior",
             "descripcion": "Lunes y Jueves",
+            "abreviatura": "SUP",
             "ejercicios": [
                 {
                     "id": "ejercicio_jalon",
@@ -533,8 +534,9 @@
         },
         {
             "id": "rutina_tren_inferior",
-            "nombre": "Tren inferior",
+            "nombre": "Tren Inferior",
             "descripcion": "Martes y Viernes",
+            "abreviatura": "INF",
             "ejercicios": [
                 {
                     "id": "ejercicio_sentadilla_asistida",

@@ -102,6 +102,8 @@ public class WorkoutDataManager {
                     }
                 }
 
+                String abbreviation = rutObj.optString("abreviatura", "");
+
                 int nameResId = 0;
                 int descResId = 0;
                 if ("rutina_tren_superior".equals(id)) {
@@ -118,6 +120,7 @@ public class WorkoutDataManager {
                         descripcion, descResId,
                         nombre, 0,
                         R.drawable.ic_dumbbell,
+                        abbreviation,
                         exercises
                 );
                 routines.add(routine);

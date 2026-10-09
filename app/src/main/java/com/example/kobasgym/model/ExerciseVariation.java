@@ -77,6 +77,9 @@ public class ExerciseVariation implements Serializable {
     }
 
     public String getDisplayName(Context context) {
+        if (name != null && !name.trim().isEmpty()) {
+            return name;
+        }
         if (nameResId != 0 && context != null) {
             try {
                 return context.getString(nameResId);
@@ -84,7 +87,7 @@ public class ExerciseVariation implements Serializable {
                 // fallback to name
             }
         }
-        return name != null ? name : "";
+        return "";
     }
 
     public int getSets() {

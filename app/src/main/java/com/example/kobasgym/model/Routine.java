@@ -14,6 +14,7 @@ public class Routine implements Serializable {
     private String muscleGroup;
     private int muscleGroupResId;
     private int imageResource;
+    private String abbreviation;
     private List<Exercise> exercises;
 
     public Routine() {
@@ -22,6 +23,11 @@ public class Routine implements Serializable {
 
     public Routine(String id, String name, int nameResId, String description, int descriptionResId,
                    String muscleGroup, int muscleGroupResId, int imageResource, List<Exercise> exercises) {
+        this(id, name, nameResId, description, descriptionResId, muscleGroup, muscleGroupResId, imageResource, null, exercises);
+    }
+
+    public Routine(String id, String name, int nameResId, String description, int descriptionResId,
+                   String muscleGroup, int muscleGroupResId, int imageResource, String abbreviation, List<Exercise> exercises) {
         this.id = id;
         this.name = name;
         this.nameResId = nameResId;
@@ -30,6 +36,7 @@ public class Routine implements Serializable {
         this.muscleGroup = muscleGroup;
         this.muscleGroupResId = muscleGroupResId;
         this.imageResource = imageResource;
+        this.abbreviation = abbreviation;
         this.exercises = exercises != null ? exercises : new ArrayList<>();
     }
 
@@ -58,6 +65,9 @@ public class Routine implements Serializable {
     }
 
     public String getDisplayName(Context context) {
+        if (name != null && !name.trim().isEmpty()) {
+            return name;
+        }
         if (nameResId != 0 && context != null) {
             try {
                 return context.getString(nameResId);
@@ -65,7 +75,7 @@ public class Routine implements Serializable {
                 // fallback
             }
         }
-        return name != null ? name : "";
+        return "";
     }
 
     public String getDescription() {
@@ -85,6 +95,9 @@ public class Routine implements Serializable {
     }
 
     public String getDisplayDescription(Context context) {
+        if (description != null && !description.trim().isEmpty()) {
+            return description;
+        }
         if (descriptionResId != 0 && context != null) {
             try {
                 return context.getString(descriptionResId);
@@ -92,7 +105,7 @@ public class Routine implements Serializable {
                 // fallback
             }
         }
-        return description != null ? description : "";
+        return "";
     }
 
     public String getMuscleGroup() {
@@ -128,6 +141,28 @@ public class Routine implements Serializable {
 
     public void setImageResource(int imageResource) {
         this.imageResource = imageResource;
+    }
+
+    public String getAbbreviation() {
+        if (abbreviation != null && !abbreviation.trim().isEmpty()) {
+            return abbreviation;
+        }
+        if ("Tren Superior".equalsIgnoreCase(name) || "rutina_tren_superior".equals(id)) return "TS";
+        if ("Tren Inferior".equalsIgnoreCase(name) || "rutina_tren_inferior".equals(id)) return "TI";
+        if (name == null || name.trim().isEmpty()) return "EX";
+        String[] parts = name.trim().split("\\s+");
+        StringBuilder sb = new StringBuilder();
+        for (String p : parts) {
+            if (!p.isEmpty()) {
+                sb.append(Character.toUpperCase(p.charAt(0)));
+                if (sb.length() >= 3) break;
+            }
+        }
+        return sb.length() > 0 ? sb.toString() : "EX";
+    }
+
+    public void setAbbreviation(String abbreviation) {
+        this.abbreviation = abbreviation;
     }
 
     public List<Exercise> getExercises() {

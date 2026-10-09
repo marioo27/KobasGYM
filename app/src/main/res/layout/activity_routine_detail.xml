@@ -1,145 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background_light">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <!-- Background Image -->
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_main"
+        android:contentDescription="@null" />
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+    <!-- Dark Overlay -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B3000000" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/blue_primary"
-            app:title="@string/app_name"
-            app:titleTextColor="@color/white"
-            app:navigationIcon="@drawable/ic_arrow_back"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <!-- Routine Header Info Card -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="@color/surface_white"
-            app:strokeColor="@color/blue_primary_light"
-            app:strokeWidth="1dp">
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="#33000000"
+                app:title="@string/app_name"
+                app:titleTextColor="@color/white"
+                app:navigationIcon="@drawable/ic_arrow_back"/>
 
-            <LinearLayout
+            <!-- Routine Header Info Card -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:layout_margin="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="#CC1E293B"
+                app:strokeColor="@color/blue_primary_light"
+                app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
 
-                        <TextView
-                            android:id="@+id/tvRoutineDetailName"
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvRoutineDetailName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/white" />
+
+                        </LinearLayout>
+
+                        <!-- Always Visible Edit Routine Button -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnEditRoutineDetail"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="22sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/blue_primary_dark" />
+                            android:text="@string/action_edit"
+                            app:icon="@drawable/ic_edit"
+                            app:iconTint="@color/blue_primary_light"
+                            app:strokeColor="@color/blue_primary_light"
+                            android:textColor="@color/white" />
 
                     </LinearLayout>
 
-                    <!-- Always Visible Edit Routine Button -->
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnEditRoutineDetail"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                        android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/tvRoutineDetailDesc"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/action_edit"
-                        app:icon="@drawable/ic_edit"
-                        app:iconTint="@color/blue_primary"
-                        app:strokeColor="@color/blue_primary"
-                        android:textColor="@color/blue_primary" />
+                        android:layout_marginTop="8dp"
+                        android:textSize="14sp"
+                        android:textColor="#E0E0E0" />
+
+                    <TextView
+                        android:id="@+id/tvTotalExercises"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/blue_primary_light" />
 
                 </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-                <TextView
-                    android:id="@+id/tvRoutineDetailDesc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:textSize="14sp"
-                    android:textColor="@color/text_secondary" />
-
-                <TextView
-                    android:id="@+id/tvTotalExercises"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/text_primary" />
-
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Exercises List Header -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/exercises_title"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/blue_primary_dark"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="8dp" />
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvExercises"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="88dp"
-                android:clipToPadding="false"/>
-
+            <!-- Exercises List Header -->
             <TextView
-                android:id="@+id/tvEmptyExercises"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/empty_exercises"
-                android:textSize="16sp"
-                android:textColor="@color/text_secondary"
-                android:visibility="gone"
-                android:padding="24dp"
-                android:gravity="center" />
+                android:text="@string/exercises_title"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="8dp" />
 
-        </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvExercises"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="88dp"
+                    android:clipToPadding="false"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddExercise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="24dp"
-        android:src="@drawable/ic_add"
-        app:tint="@color/white"
-        app:backgroundTint="@color/blue_primary"
-        android:contentDescription="@string/btn_add_exercise" />
+                <TextView
+                    android:id="@+id/tvEmptyExercises"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/empty_exercises"
+                    android:textSize="16sp"
+                    android:textColor="#E0E0E0"
+                    android:visibility="gone"
+                    android:padding="24dp"
+                    android:gravity="center" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAddExercise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="24dp"
+            android:src="@drawable/ic_add"
+            app:tint="@color/white"
+            app:backgroundTint="@color/blue_primary"
+            android:contentDescription="@string/btn_add_exercise" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>

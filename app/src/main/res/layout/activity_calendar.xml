@@ -27,7 +27,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Calendar Card -->
+            <!-- Custom Calendar Card -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,12 +42,69 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="8dp">
+                    android:padding="12dp">
 
-                    <CalendarView
-                        android:id="@+id/calendarView"
+                    <!-- Month Navigation Header -->
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <ImageButton
+                            android:id="@+id/btnPrevMonth"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:src="@drawable/ic_arrow_back"
+                            app:tint="@color/blue_primary"
+                            android:contentDescription="Mes anterior" />
+
+                        <TextView
+                            android:id="@+id/tvMonthYearTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/blue_primary_dark"
+                            android:gravity="center" />
+
+                        <ImageButton
+                            android:id="@+id/btnNextMonth"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/blue_primary"
+                            android:contentDescription="Mes siguiente" />
+
+                    </LinearLayout>
+
+                    <!-- Weekdays Header (Starts on Monday: L, M, X, J, V, S, D) -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="L" android:textStyle="bold" android:textColor="@color/text_secondary" android:gravity="center"/>
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="M" android:textStyle="bold" android:textColor="@color/text_secondary" android:gravity="center"/>
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="X" android:textStyle="bold" android:textColor="@color/text_secondary" android:gravity="center"/>
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="J" android:textStyle="bold" android:textColor="@color/text_secondary" android:gravity="center"/>
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="V" android:textStyle="bold" android:textColor="@color/text_secondary" android:gravity="center"/>
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="S" android:textStyle="bold" android:textColor="@color/text_secondary" android:gravity="center"/>
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="D" android:textStyle="bold" android:textColor="@color/text_secondary" android:gravity="center"/>
+
+                    </LinearLayout>
+
+                    <!-- Calendar Days Grid (7 columns) -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvCalendarGrid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

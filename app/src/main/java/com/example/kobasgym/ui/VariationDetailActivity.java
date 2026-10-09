@@ -1,5 +1,6 @@
 package com.example.kobasgym.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -11,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.content.ContextCompat;
 
 import com.example.kobasgym.R;
 import com.example.kobasgym.data.WorkoutDataManager;
@@ -123,7 +123,7 @@ public class VariationDetailActivity extends BaseActivity {
             TextView tvLabel = new TextView(this);
             tvLabel.setText(String.format(getString(R.string.label_set_number), i + 1));
             tvLabel.setTextSize(14);
-            tvLabel.setTextColor(ContextCompat.getColor(this, R.color.text_primary));
+            tvLabel.setTextColor(Color.WHITE);
             LinearLayout.LayoutParams labelParams = new LinearLayout.LayoutParams(
                     dpToPx(70),
                     LinearLayout.LayoutParams.WRAP_CONTENT
@@ -142,6 +142,7 @@ public class VariationDetailActivity extends BaseActivity {
 
             TextInputEditText et = new TextInputEditText(til.getContext());
             et.setInputType(android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL);
+            et.setTextColor(Color.WHITE);
             
             double val = 0.0;
             if (initialWeights != null && i < initialWeights.size()) {
@@ -156,7 +157,7 @@ public class VariationDetailActivity extends BaseActivity {
             TextView tvUnit = new TextView(this);
             tvUnit.setText("kg");
             tvUnit.setTextSize(14);
-            tvUnit.setTextColor(ContextCompat.getColor(this, R.color.text_secondary));
+            tvUnit.setTextColor(Color.parseColor("#E0E0E0"));
 
             row.addView(tvLabel);
             row.addView(til);
@@ -189,7 +190,6 @@ public class VariationDetailActivity extends BaseActivity {
             binding.etVariationName.setText(currentVariation.getDisplayName(this));
             binding.etSets.setText(String.valueOf(currentVariation.getSets()));
             binding.etReps.setText(String.valueOf(currentVariation.getRepetitions()));
-            binding.etRestSeconds.setText(String.valueOf(currentVariation.getRestSeconds()));
             binding.etNotes.setText(currentVariation.getDisplayNotes(this));
 
             if (currentVariation.getImageResource() != 0) {
@@ -202,7 +202,6 @@ public class VariationDetailActivity extends BaseActivity {
             // New variation defaults (initialized to 0 weight for all sets)
             binding.etSets.setText("3");
             binding.etReps.setText("10");
-            binding.etRestSeconds.setText("90");
 
             List<Double> initialZeroWeights = new ArrayList<>();
             initialZeroWeights.add(0.0);
@@ -218,7 +217,6 @@ public class VariationDetailActivity extends BaseActivity {
         String name = binding.etVariationName.getText() != null ? binding.etVariationName.getText().toString().trim() : "";
         String setsStr = binding.etSets.getText() != null ? binding.etSets.getText().toString().trim() : "";
         String repsStr = binding.etReps.getText() != null ? binding.etReps.getText().toString().trim() : "";
-        String restStr = binding.etRestSeconds.getText() != null ? binding.etRestSeconds.getText().toString().trim() : "";
         String notes = binding.etNotes.getText() != null ? binding.etNotes.getText().toString().trim() : "";
 
         boolean hasError = false;
@@ -258,20 +256,6 @@ public class VariationDetailActivity extends BaseActivity {
             hasError = true;
         }
 
-        int rest = 0;
-        try {
-            rest = Integer.parseInt(restStr);
-            if (rest < 0) {
-                binding.tilRestSeconds.setError(getString(R.string.error_invalid_rest));
-                hasError = true;
-            } else {
-                binding.tilRestSeconds.setError(null);
-            }
-        } catch (NumberFormatException e) {
-            binding.tilRestSeconds.setError(getString(R.string.error_invalid_rest));
-            hasError = true;
-        }
-
         if (hasError) return;
 
         List<Double> setWeights = getCurrentSetWeightsFromUI();
@@ -287,7 +271,7 @@ public class VariationDetailActivity extends BaseActivity {
             currentVariation.setWeight(primaryWeight);
             currentVariation.setSetWeights(setWeights);
             currentVariation.setWeightUnit(unit);
-            currentVariation.setRestSeconds(rest);
+            currentVariation.setRestSeconds(0);
             currentVariation.setNotes(notes);
             currentVariation.setNotesResId(0);
 
@@ -296,7 +280,7 @@ public class VariationDetailActivity extends BaseActivity {
             ExerciseVariation newVar = new ExerciseVariation(
                     UUID.randomUUID().toString(),
                     name, 0,
-                    sets, reps, primaryWeight, unit, rest,
+                    sets, reps, primaryWeight, unit, 0,
                     notes, 0,
                     R.drawable.image_placeholder
             );

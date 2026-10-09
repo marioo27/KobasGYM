@@ -11,7 +11,7 @@
     android:focusable="true"
     app:cardCornerRadius="16dp"
     app:cardElevation="3dp"
-    app:cardBackgroundColor="@color/surface_white"
+    app:cardBackgroundColor="#CC1E293B"
     app:strokeColor="@color/blue_primary_light"
     app:strokeWidth="1dp">
 
@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="@color/text_primary" />
+                    android:textColor="@color/white" />
 
                 <TextView
                     android:id="@+id/tvExtraBadge"
@@ -99,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="13sp"
                     android:textStyle="bold"
-                    android:textColor="@color/blue_primary_dark" />
+                    android:textColor="@color/blue_primary_light" />
 
                 <TextView
                     android:id="@+id/tvSetsRepsSummary"
@@ -107,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:textSize="12sp"
-                    android:textColor="@color/text_secondary" />
+                    android:textColor="#E0E0E0" />
 
             </LinearLayout>
 

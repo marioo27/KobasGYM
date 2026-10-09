@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@color/surface_white"
     android:padding="20dp">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -23,13 +24,16 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
+    <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/switchIsExtra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:text="@string/hint_extra_exercise"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        android:layout_marginBottom="16dp"
+        app:buttonTint="@color/blue_primary"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnDeleteExercise"

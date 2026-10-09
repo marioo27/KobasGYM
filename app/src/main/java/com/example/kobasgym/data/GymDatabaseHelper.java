@@ -439,20 +439,43 @@ public class GymDatabaseHelper extends SQLiteOpenHelper {
 
     public void saveWorkoutLog(com.example.kobasgym.model.WorkoutLog log) {
         if (log == null || log.getDate() == null) return;
-        SQLiteDatabase db = getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put("date", log.getDate());
-        cv.put("routine_id", log.getRoutineId());
-        cv.put("routine_name", log.getRoutineName());
-        cv.put("notes", log.getNotes());
-        cv.put("timestamp", log.getTimestamp());
-        db.insertWithOnConflict(TABLE_WORKOUT_LOGS, null, cv, SQLiteDatabase.CONFLICT_REPLACE);
+        try {
+            SQLiteDatabase db = getWritableDatabase();
+            db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_WORKOUT_LOGS + " ("
+                    + "date TEXT PRIMARY KEY, "
+                    + "routine_id TEXT, "
+                    + "routine_name TEXT, "
+                    + "notes TEXT, "
+                    + "timestamp INTEGER"
+                    + ");");
+
+            ContentValues cv = new ContentValues();
+            cv.put("date", log.getDate());
+            cv.put("routine_id", log.getRoutineId() != null ? log.getRoutineId() : "");
+            cv.put("routine_name", log.getRoutineName() != null ? log.getRoutineName() : "");
+            cv.put("notes", log.getNotes() != null ? log.getNotes() : "");
+            cv.put("timestamp", log.getTimestamp());
+            db.insertWithOnConflict(TABLE_WORKOUT_LOGS, null, cv, SQLiteDatabase.CONFLICT_REPLACE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void deleteWorkoutLog(String date) {
         if (date == null) return;
-        SQLiteDatabase db = getWritableDatabase();
-        db.delete(TABLE_WORKOUT_LOGS, "date = ?", new String[]{date});
+        try {
+            SQLiteDatabase db = getWritableDatabase();
+            db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_WORKOUT_LOGS + " ("
+                    + "date TEXT PRIMARY KEY, "
+                    + "routine_id TEXT, "
+                    + "routine_name TEXT, "
+                    + "notes TEXT, "
+                    + "timestamp INTEGER"
+                    + ");");
+            db.delete(TABLE_WORKOUT_LOGS, "date = ?", new String[]{date});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public com.example.kobasgym.model.WorkoutLog getWorkoutLog(String date) {

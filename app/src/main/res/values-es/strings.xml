@@ -31,7 +31,7 @@
     <!-- Routine Form Hints -->
     <string name="hint_routine_name">Nombre de la rutina</string>
     <string name="hint_routine_description">Descripción</string>
-    <string name="hint_muscle_group">Categoría / Grupo muscular</string>
+    <string name="hint_routine_abbreviation">Abreviatura para el calendario (ej. TS, TI)</string>
     <string name="error_empty_routine_name">El nombre de la rutina no puede estar vacío.</string>
 
     <!-- Routine Detail & Exercises -->
@@ -94,18 +94,21 @@
     <string name="text_workout_logged">Entrenamiento registrado</string>
     <string name="text_no_workout">Sin entrenamiento registrado</string>
     <string name="text_monthly_stats">Resumen de este mes: %d días entrenados</string>
+    <string name="text_course_stats">Curso actual (desde septiembre): %d días entrenados</string>
+    <string name="btn_log_workout">Registrar entrenamiento</string>
+    <string name="btn_edit_workout">Editar entrenamiento</string>
 
     <!-- Default Initial Routine & Exercise Translation Resources -->
-    <string name="routine_upper_body">Tren superior</string>
-    <string name="routine_lower_body">Tren inferior</string>
+    <string name="routine_upper_body">Tren Superior</string>
+    <string name="routine_lower_body">Tren Inferior</string>
     <string name="routine_extras">Extras</string>
 
     <string name="routine_desc_upper_body">Lunes y Miércoles</string>
     <string name="routine_desc_lower_body">Martes y Jueves</string>
     <string name="routine_desc_extras">Ejercicios accesorios para hombros y brazos.</string>
 
-    <string name="category_upper_body">Tren superior</string>
-    <string name="category_lower_body">Tren inferior</string>
+    <string name="category_upper_body">Tren Superior</string>
+    <string name="category_lower_body">Tren Inferior</string>
     <string name="category_extras">Extras</string>
 
     <string name="muscle_back">Espalda</string>
@@ -176,4 +179,5 @@
     <string name="label_set_weights">Pesos por serie</string>
     <string name="label_set_number">Serie %d</string>
     <string name="msg_no_lower_body_variations">Los ejercicios de tren inferior no tienen variaciones.</string>
+    <string name="error_future_date">No puedes registrar entrenamientos en días futuros.</string>
 </resources>

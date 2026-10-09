@@ -71,8 +71,6 @@ public class VariationAdapter extends RecyclerView.Adapter<VariationAdapter.Vari
                     + " • " + variation.getDisplayWeights() + " " + variation.getWeightUnit();
             binding.tvSetsRepsWeight.setText(setsRepsWeight);
 
-            binding.tvRestTime.setText(context.getString(R.string.rest_seconds_format, variation.getRestSeconds()));
-
             String notes = variation.getDisplayNotes(context);
             if (TextUtils.isEmpty(notes)) {
                 binding.tvVariationNotes.setVisibility(View.GONE);
