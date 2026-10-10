@@ -2,6 +2,7 @@ package com.example.kobasgym.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,15 @@ public class MainOptionsActivity extends BaseActivity implements CalendarGridAda
     private final SimpleDateFormat monthYearFormat = new SimpleDateFormat("MMMM yyyy", new Locale("es", "ES"));
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
+    private TextToSpeech textToSpeech;
+    private final String[] roasts = {
+        "¿Eso es todo lo que vas a levantar hoy? ¡Mi abuela calienta con más peso!",
+        "¿Hoy tocaba entrenar o venías a hacer amigos al vestuario?",
+        "¡Menuda técnica... de risa! Menos mirar el móvil y más sudar.",
+        "¿Seguro que esas mancuernas no son de plástico?",
+        "¿Otra vez con excusas? ¡A darle duro!"
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +67,7 @@ public class MainOptionsActivity extends BaseActivity implements CalendarGridAda
 
         setupCalendarRecyclerView();
         setupMonthNavigation();
+        setupDiablilloCoach();
 
         binding.cardSeeRoutines.setOnClickListener(v -> {
             Intent intent = new Intent(MainOptionsActivity.this, RoutinesListActivity.class);
@@ -70,6 +81,50 @@ public class MainOptionsActivity extends BaseActivity implements CalendarGridAda
     protected void onResume() {
         super.onResume();
         refreshAllData();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (textToSpeech != null) {
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
+        super.onDestroy();
+    }
+
+    private void setupDiablilloCoach() {
+        try {
+            android.net.Uri uri = android.net.Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.diablillo);
+            binding.videoDiablillo.setVideoURI(uri);
+            binding.videoDiablillo.setOnPreparedListener(mp -> {
+                mp.setLooping(true);
+                mp.start();
+            });
+            binding.videoDiablillo.setOnErrorListener((mp, what, extra) -> true);
+            binding.videoDiablillo.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        textToSpeech = new TextToSpeech(this, status -> {
+            if (status == TextToSpeech.SUCCESS) {
+                textToSpeech.setLanguage(new Locale("es", "ES"));
+                speakRandomRoast();
+            }
+        });
+
+        binding.cardDiablilloCoach.setOnClickListener(v -> speakRandomRoast());
+    }
+
+    private void speakRandomRoast() {
+        if (roasts.length > 0) {
+            int index = new java.util.Random().nextInt(roasts.length);
+            String roast = roasts[index];
+            binding.tvDiablilloSpeech.setText(roast);
+            if (textToSpeech != null) {
+                textToSpeech.speak(roast, TextToSpeech.QUEUE_FLUSH, null, null);
+            }
+        }
     }
 
     private String formatDateStr(int year, int monthZeroBased, int day) {
@@ -130,23 +185,34 @@ public class MainOptionsActivity extends BaseActivity implements CalendarGridAda
 
     private String getAbbreviationForLog(WorkoutLog log) {
         if (log == null) return "";
-        Routine r = WorkoutDataManager.getInstance().getRoutineById(log.getRoutineId());
-        if (r != null) {
+        String rId = log.getRoutineId();
+        String rName = log.getRoutineName();
+
+        if ("rutina_tren_superior".equals(rId) || (rName != null && rName.toLowerCase().contains("superior"))) {
+            return "SUP";
+        }
+        if ("rutina_tren_inferior".equals(rId) || (rName != null && rName.toLowerCase().contains("inferior"))) {
+            return "INF";
+        }
+
+        Routine r = WorkoutDataManager.getInstance().getRoutineById(rId);
+        if (r != null && !TextUtils.isEmpty(r.getAbbreviation())) {
             return r.getAbbreviation();
         }
-        String name = log.getRoutineName();
-        if (name == null) return "EX";
-        if ("Tren Superior".equalsIgnoreCase(name) || "rutina_tren_superior".equals(log.getRoutineId())) return "TS";
-        if ("Tren Inferior".equalsIgnoreCase(name) || "rutina_tren_inferior".equals(log.getRoutineId())) return "TI";
-        String[] parts = name.trim().split("\\s+");
-        StringBuilder sb = new StringBuilder();
-        for (String p : parts) {
-            if (!p.isEmpty()) {
-                sb.append(Character.toUpperCase(p.charAt(0)));
-                if (sb.length() >= 3) break;
+
+        if (rName != null && !rName.trim().isEmpty()) {
+            String[] parts = rName.trim().split("\\s+");
+            StringBuilder sb = new StringBuilder();
+            for (String p : parts) {
+                if (!p.isEmpty()) {
+                    sb.append(Character.toUpperCase(p.charAt(0)));
+                    if (sb.length() >= 3) break;
+                }
             }
+            return sb.length() > 0 ? sb.toString() : "EX";
         }
-        return sb.length() > 0 ? sb.toString() : "EX";
+
+        return "EX";
     }
 
     private void generateCalendarGridDays() {
@@ -341,7 +407,7 @@ public class MainOptionsActivity extends BaseActivity implements CalendarGridAda
                 dialogBinding.spinnerRoutines.setSelection(index);
             }
         } else {
-            dialogBinding.switchAttended.setChecked(true);
+            dialogBinding.switchAttended.setChecked(true); // Default to ON when registering
             dialogBinding.llRoutineDetails.setVisibility(View.VISIBLE);
             dialogBinding.btnDeleteLog.setVisibility(View.GONE);
         }
@@ -444,5 +510,8 @@ public class MainOptionsActivity extends BaseActivity implements CalendarGridAda
         });
 
         dialog.show();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.WHITE));
+        }
     }
 }

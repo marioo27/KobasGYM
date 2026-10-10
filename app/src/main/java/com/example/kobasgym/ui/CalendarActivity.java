@@ -127,23 +127,34 @@ public class CalendarActivity extends BaseActivity implements WorkoutLogAdapter.
 
     private String getAbbreviationForLog(WorkoutLog log) {
         if (log == null) return "";
-        Routine r = WorkoutDataManager.getInstance().getRoutineById(log.getRoutineId());
-        if (r != null) {
+        String rId = log.getRoutineId();
+        String rName = log.getRoutineName();
+
+        if ("rutina_tren_superior".equals(rId) || (rName != null && rName.toLowerCase().contains("superior"))) {
+            return "SUP";
+        }
+        if ("rutina_tren_inferior".equals(rId) || (rName != null && rName.toLowerCase().contains("inferior"))) {
+            return "INF";
+        }
+
+        Routine r = WorkoutDataManager.getInstance().getRoutineById(rId);
+        if (r != null && !TextUtils.isEmpty(r.getAbbreviation())) {
             return r.getAbbreviation();
         }
-        String name = log.getRoutineName();
-        if (name == null) return "EX";
-        if ("Tren Superior".equalsIgnoreCase(name) || "rutina_tren_superior".equals(log.getRoutineId())) return "SUP";
-        if ("Tren Inferior".equalsIgnoreCase(name) || "rutina_tren_inferior".equals(log.getRoutineId())) return "INF";
-        String[] parts = name.trim().split("\\s+");
-        StringBuilder sb = new StringBuilder();
-        for (String p : parts) {
-            if (!p.isEmpty()) {
-                sb.append(Character.toUpperCase(p.charAt(0)));
-                if (sb.length() >= 3) break;
+
+        if (rName != null && !rName.trim().isEmpty()) {
+            String[] parts = rName.trim().split("\\s+");
+            StringBuilder sb = new StringBuilder();
+            for (String p : parts) {
+                if (!p.isEmpty()) {
+                    sb.append(Character.toUpperCase(p.charAt(0)));
+                    if (sb.length() >= 3) break;
+                }
             }
+            return sb.length() > 0 ? sb.toString() : "EX";
         }
-        return sb.length() > 0 ? sb.toString() : "EX";
+
+        return "EX";
     }
 
     private void generateCalendarGridDays() {

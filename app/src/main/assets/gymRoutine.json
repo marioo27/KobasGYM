@@ -447,6 +447,28 @@
                                 }
                             ],
                             "notas": ""
+                        },
+                        {
+                            "id": "variacion_triceps_extension_mancuerna",
+                            "nombre": "Extensión por encima de la cabeza con mancuerna",
+                            "series": [
+                                {
+                                    "numero": 1,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 2,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                },
+                                {
+                                    "numero": 3,
+                                    "peso_kg": 0,
+                                    "repeticiones": 10
+                                }
+                            ],
+                            "notas": ""
                         }
                     ]
                 }
