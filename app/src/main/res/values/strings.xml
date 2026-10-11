@@ -28,7 +28,7 @@
     <!-- Routine Form Hints -->
     <string name="hint_routine_name">Nombre de la rutina</string>
     <string name="hint_routine_description">Descripción</string>
-    <string name="hint_routine_abbreviation">Abreviatura para el calendario (ej. TS, TI)</string>
+    <string name="hint_routine_abbreviation">Abreviatura</string>
     <string name="error_empty_routine_name">El nombre de la rutina no puede estar vacío.</string>
 
     <!-- Routine Detail & Exercises -->

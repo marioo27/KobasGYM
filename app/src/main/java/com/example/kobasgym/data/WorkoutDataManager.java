@@ -1,6 +1,7 @@
 package com.example.kobasgym.data;
 
 import android.content.Context;
+import android.text.TextUtils;
 import com.example.kobasgym.R;
 import com.example.kobasgym.model.Exercise;
 import com.example.kobasgym.model.ExerciseVariation;
@@ -43,6 +44,19 @@ public class WorkoutDataManager {
             throw new IllegalStateException("WorkoutDataManager must be initialized with context first.");
         }
         return instance;
+    }
+
+    public synchronized void resetRoutinesFromAssetJson() {
+        if (appContext == null) return;
+        if (dbHelper != null) {
+            dbHelper.saveAllRoutines(new ArrayList<>());
+        }
+        routines.clear();
+        loadDataFromJson(appContext);
+        if (dbHelper != null && !routines.isEmpty()) {
+            dbHelper.saveAllRoutines(routines);
+            exportJsonFile();
+        }
     }
 
     private void loadData(Context context) {
@@ -119,7 +133,7 @@ public class WorkoutDataManager {
                         nombre, nameResId,
                         descripcion, descResId,
                         nombre, 0,
-                        R.drawable.ic_dumbbell,
+                        R.drawable.red_devil_mad,
                         abbreviation,
                         exercises
                 );
@@ -148,7 +162,7 @@ public class WorkoutDataManager {
                 id,
                 nombre, 0,
                 "", 0,
-                R.drawable.image_placeholder,
+                R.drawable.red_devil_mad,
                 variations,
                 isExtra
         );
@@ -196,7 +210,7 @@ public class WorkoutDataManager {
                 restSeconds,
                 notas,
                 0,
-                R.drawable.image_placeholder
+                R.drawable.red_devil_mad
         );
         variation.setSetWeights(setWeights);
         return variation;
@@ -459,71 +473,138 @@ public class WorkoutDataManager {
         return new java.util.HashMap<>();
     }
 
+    public synchronized boolean importJsonData(String jsonString) {
+        if (TextUtils.isEmpty(jsonString)) return false;
+        try {
+            JSONObject rootObj = new JSONObject(jsonString);
+            JSONArray rutinasArray = rootObj.optJSONArray("rutinas");
+            if (rutinasArray == null) return false;
+
+            if (dbHelper != null) {
+                dbHelper.saveAllRoutines(new ArrayList<>());
+            }
+            routines.clear();
+
+            for (int i = 0; i < rutinasArray.length(); i++) {
+                JSONObject rutObj = rutinasArray.getJSONObject(i);
+                String id = rutObj.optString("id", UUID.randomUUID().toString());
+                String nombre = rutObj.optString("nombre", "");
+                String descripcion = rutObj.optString("descripcion", "");
+                String abbrev = rutObj.optString("abreviatura", "");
+
+                List<Exercise> exercises = new ArrayList<>();
+                JSONArray exArray = rutObj.optJSONArray("ejercicios");
+                if (exArray != null) {
+                    for (int j = 0; j < exArray.length(); j++) {
+                        Exercise ex = parseExercise(exArray.optJSONObject(j), false);
+                        if (ex != null) exercises.add(ex);
+                    }
+                }
+                JSONArray extraExArray = rutObj.optJSONArray("ejercicios_extra");
+                if (extraExArray != null) {
+                    for (int j = 0; j < extraExArray.length(); j++) {
+                        Exercise ex = parseExercise(extraExArray.optJSONObject(j), true);
+                        if (ex != null) exercises.add(ex);
+                    }
+                }
+
+                Routine routine = new Routine(
+                        id,
+                        nombre, 0,
+                        descripcion, 0,
+                        nombre, 0,
+                        R.drawable.red_devil_mad,
+                        abbrev,
+                        exercises
+                );
+                routines.add(routine);
+                if (dbHelper != null) {
+                    dbHelper.insertRoutine(routine, i);
+                }
+            }
+            exportJsonFile();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public synchronized String generateJsonString() {
+        try {
+            JSONObject root = new JSONObject();
+            JSONArray rutinasArray = new JSONArray();
+
+            for (Routine r : routines) {
+                JSONObject rutObj = new JSONObject();
+                rutObj.put("id", r.getId());
+                rutObj.put("nombre", r.getName() != null ? r.getName() : "");
+                rutObj.put("descripcion", r.getDescription() != null ? r.getDescription() : "");
+                rutObj.put("abreviatura", r.getAbbreviation() != null ? r.getAbbreviation() : "");
+
+                JSONArray ejerciciosArray = new JSONArray();
+                JSONArray ejerciciosExtraArray = new JSONArray();
+
+                if (r.getExercises() != null) {
+                    for (Exercise ex : r.getExercises()) {
+                        JSONObject exObj = new JSONObject();
+                        exObj.put("id", ex.getId());
+                        exObj.put("nombre", ex.getName() != null ? ex.getName() : "");
+
+                        JSONArray variacionesArray = new JSONArray();
+                        if (ex.getVariations() != null) {
+                            for (ExerciseVariation var : ex.getVariations()) {
+                                JSONObject varObj = new JSONObject();
+                                varObj.put("id", var.getId());
+                                varObj.put("nombre", var.getName() != null ? var.getName() : "");
+                                varObj.put("notas", var.getNotes() != null ? var.getNotes() : "");
+
+                                JSONArray seriesArray = new JSONArray();
+                                List<Double> weights = var.getSetWeights();
+                                if (weights != null) {
+                                    for (int sIdx = 0; sIdx < weights.size(); sIdx++) {
+                                        JSONObject setObj = new JSONObject();
+                                        setObj.put("numero", sIdx + 1);
+                                        setObj.put("peso_kg", weights.get(sIdx));
+                                        setObj.put("repeticiones", var.getRepetitions());
+                                        seriesArray.put(setObj);
+                                    }
+                                }
+                                varObj.put("series", seriesArray);
+                                variacionesArray.put(varObj);
+                            }
+                        }
+                        exObj.put("variaciones", variacionesArray);
+
+                        if (ex.isExtra()) {
+                            ejerciciosExtraArray.put(exObj);
+                        } else {
+                            ejerciciosArray.put(exObj);
+                        }
+                    }
+                }
+                rutObj.put("ejercicios", ejerciciosArray);
+                if (ejerciciosExtraArray.length() > 0) {
+                    rutObj.put("ejercicios_extra", ejerciciosExtraArray);
+                }
+                rutinasArray.put(rutObj);
+            }
+            root.put("rutinas", rutinasArray);
+            return root.toString(2);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
     private void exportJsonFile() {
         if (appContext == null) return;
         new Thread(() -> {
             try {
-                JSONObject root = new JSONObject();
-                JSONArray rutinasArray = new JSONArray();
-
-                for (Routine r : routines) {
-                    JSONObject rutObj = new JSONObject();
-                    rutObj.put("id", r.getId());
-                    rutObj.put("nombre", r.getName() != null ? r.getName() : "");
-                    rutObj.put("descripcion", r.getDescription() != null ? r.getDescription() : "");
-
-                    JSONArray ejerciciosArray = new JSONArray();
-                    JSONArray ejerciciosExtraArray = new JSONArray();
-
-                    if (r.getExercises() != null) {
-                        for (Exercise ex : r.getExercises()) {
-                            JSONObject exObj = new JSONObject();
-                            exObj.put("id", ex.getId());
-                            exObj.put("nombre", ex.getName() != null ? ex.getName() : "");
-
-                            JSONArray variacionesArray = new JSONArray();
-                            if (ex.getVariations() != null) {
-                                for (ExerciseVariation var : ex.getVariations()) {
-                                    JSONObject varObj = new JSONObject();
-                                    varObj.put("id", var.getId());
-                                    varObj.put("nombre", var.getName() != null ? var.getName() : "");
-                                    varObj.put("notas", var.getNotes() != null ? var.getNotes() : "");
-
-                                    JSONArray seriesArray = new JSONArray();
-                                    List<Double> weights = var.getSetWeights();
-                                    if (weights != null) {
-                                        for (int sIdx = 0; sIdx < weights.size(); sIdx++) {
-                                            JSONObject setObj = new JSONObject();
-                                            setObj.put("numero", sIdx + 1);
-                                            setObj.put("peso_kg", weights.get(sIdx));
-                                            setObj.put("repeticiones", var.getRepetitions());
-                                            seriesArray.put(setObj);
-                                        }
-                                    }
-                                    varObj.put("series", seriesArray);
-                                    variacionesArray.put(varObj);
-                                }
-                            }
-                            exObj.put("variaciones", variacionesArray);
-
-                            if (ex.isExtra()) {
-                                ejerciciosExtraArray.put(exObj);
-                            } else {
-                                ejerciciosArray.put(exObj);
-                            }
-                        }
-                    }
-                    rutObj.put("ejercicios", ejerciciosArray);
-                    if (ejerciciosExtraArray.length() > 0) {
-                        rutObj.put("ejercicios_extra", ejerciciosExtraArray);
-                    }
-                    rutinasArray.put(rutObj);
-                }
-                root.put("rutinas", rutinasArray);
-
+                String jsonStr = generateJsonString();
                 File outFile = new File(appContext.getFilesDir(), "gymRoutine.json");
                 FileOutputStream fos = new FileOutputStream(outFile);
-                fos.write(root.toString(2).getBytes(StandardCharsets.UTF_8));
+                fos.write(jsonStr.getBytes(StandardCharsets.UTF_8));
                 fos.close();
             } catch (Exception e) {
                 e.printStackTrace();

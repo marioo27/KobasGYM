@@ -2,22 +2,25 @@ package com.example.kobasgym.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.kobasgym.R;
 import com.example.kobasgym.adapter.CalendarGridAdapter;
 import com.example.kobasgym.data.WorkoutDataManager;
 import com.example.kobasgym.databinding.ActivityMainOptionsBinding;
+import com.example.kobasgym.databinding.DialogCreditsBinding;
 import com.example.kobasgym.databinding.DialogCreateRoutineBinding;
 import com.example.kobasgym.databinding.DialogLogWorkoutBinding;
+import com.example.kobasgym.databinding.DialogSettingsBinding;
 import com.example.kobasgym.model.CalendarDay;
 import com.example.kobasgym.model.Routine;
 import com.example.kobasgym.model.WorkoutLog;
@@ -43,7 +46,6 @@ public class MainOptionsActivity extends BaseActivity implements CalendarGridAda
     private final SimpleDateFormat monthYearFormat = new SimpleDateFormat("MMMM yyyy", new Locale("es", "ES"));
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
-    private TextToSpeech textToSpeech;
     private final String[] roasts = {
         "¿Eso es todo lo que vas a levantar hoy? ¡Mi abuela calienta con más peso!",
         "¿Hoy tocaba entrenar o venías a hacer amigos al vestuario?",
@@ -58,6 +60,8 @@ public class MainOptionsActivity extends BaseActivity implements CalendarGridAda
         binding = ActivityMainOptionsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        WorkoutDataManager.getInstance(this).resetRoutinesFromAssetJson();
+
         setupToolbar();
 
         Calendar today = Calendar.getInstance();
@@ -69,21 +73,6 @@ public class MainOptionsActivity extends BaseActivity implements CalendarGridAda
         setupMonthNavigation();
         setupDiablilloCoach();
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
-            if (androidx.core.content.ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
-                androidx.core.app.ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 101);
-            }
-        }
-
-        binding.ivFloatingDiablillo.setOnClickListener(v -> {
-            speakRandomRoast();
-            if (roasts.length > 0) {
-                int index = new java.util.Random().nextInt(roasts.length);
-                com.example.kobasgym.utils.DiablilloNotificationHelper.showDiablilloNotification(this, roasts[index]);
-                Toast.makeText(this, "¡Diablillo Rojo te ha enviado una notificación!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
         binding.cardSeeRoutines.setOnClickListener(v -> {
             Intent intent = new Intent(MainOptionsActivity.this, RoutinesListActivity.class);
             startActivity(intent);
@@ -93,52 +82,141 @@ public class MainOptionsActivity extends BaseActivity implements CalendarGridAda
     }
 
     @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        if (item.getItemId() == R.id.action_settings) {
+            showSettingsDialog();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private final androidx.activity.result.ActivityResultLauncher<String> importJsonLauncher = registerForActivityResult(
+            new androidx.activity.result.contract.ActivityResultContracts.GetContent(),
+            uri -> {
+                if (uri != null) {
+                    try {
+                        java.io.InputStream inputStream = getContentResolver().openInputStream(uri);
+                        java.util.Scanner s = new java.util.Scanner(inputStream).useDelimiter("\\A");
+                        String jsonStr = s.hasNext() ? s.next() : "";
+                        inputStream.close();
+
+                        boolean success = WorkoutDataManager.getInstance().importJsonData(jsonStr);
+                        if (success) {
+                            Toast.makeText(this, "¡JSON importado con éxito!", Toast.LENGTH_SHORT).show();
+                            refreshAllData();
+                        } else {
+                            Toast.makeText(this, "Error al importar el JSON", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(this, "Error al leer el archivo: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+    );
+
+    private void exportJson() {
+        try {
+            String jsonStr = WorkoutDataManager.getInstance().generateJsonString();
+            java.io.File downloadsDir = android.os.Environment.getExternalStoragePublicDirectory(android.os.Environment.DIRECTORY_DOWNLOADS);
+            if (!downloadsDir.exists()) downloadsDir.mkdirs();
+            java.io.File dest = new java.io.File(downloadsDir, "gymRoutine_backup.json");
+            java.io.FileOutputStream fos = new java.io.FileOutputStream(dest);
+            fos.write(jsonStr.getBytes(java.nio.charset.StandardCharsets.UTF_8));
+            fos.close();
+            Toast.makeText(this, "JSON exportado a Descargas: gymRoutine_backup.json", Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                java.io.File internalFile = new java.io.File(getFilesDir(), "gymRoutine_export.json");
+                java.io.FileOutputStream fos = new java.io.FileOutputStream(internalFile);
+                fos.write(WorkoutDataManager.getInstance().generateJsonString().getBytes(java.nio.charset.StandardCharsets.UTF_8));
+                fos.close();
+                Toast.makeText(this, "Guardado en archivos internos de la app", Toast.LENGTH_LONG).show();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                Toast.makeText(this, "Error al exportar JSON", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void showSettingsDialog() {
+        DialogSettingsBinding settingsBinding = DialogSettingsBinding.inflate(LayoutInflater.from(this));
+
+        android.content.SharedPreferences prefs = getSharedPreferences("kobasgym_prefs", MODE_PRIVATE);
+        boolean isLbs = prefs.getBoolean("use_lbs", false);
+
+        if (isLbs) {
+            settingsBinding.rbLbs.setChecked(true);
+        } else {
+            settingsBinding.rbKg.setChecked(true);
+        }
+
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(settingsBinding.getRoot())
+                .setNegativeButton("Cerrar", (d, w) -> d.dismiss())
+                .create();
+
+        dialog.show();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.parseColor("#ECEFF1")));
+        }
+
+        settingsBinding.rgWeightUnit.setOnCheckedChangeListener((group, checkedId) -> {
+            boolean lbs = (checkedId == settingsBinding.rbLbs.getId());
+            prefs.edit().putBoolean("use_lbs", lbs).apply();
+            Toast.makeText(this, lbs ? "Unidad cambiada a libras (lbs)" : "Unidad cambiada a kilos (kg)", Toast.LENGTH_SHORT).show();
+        });
+
+        settingsBinding.btnExportJson.setOnClickListener(v -> {
+            exportJson();
+            dialog.dismiss();
+        });
+
+        settingsBinding.btnImportJson.setOnClickListener(v -> {
+            importJsonLauncher.launch("application/json");
+            dialog.dismiss();
+        });
+
+        settingsBinding.btnCredits.setOnClickListener(v -> {
+            showCreditsDialog();
+        });
+    }
+
+    private void showCreditsDialog() {
+        DialogCreditsBinding creditsBinding = DialogCreditsBinding.inflate(LayoutInflater.from(this));
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(creditsBinding.getRoot())
+                .setPositiveButton("OK", (d, w) -> d.dismiss())
+                .create();
+
+        dialog.show();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.parseColor("#ECEFF1")));
+        }
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         refreshAllData();
     }
 
-    @Override
-    protected void onDestroy() {
-        if (textToSpeech != null) {
-            textToSpeech.stop();
-            textToSpeech.shutdown();
-        }
-        super.onDestroy();
-    }
-
     private void setupDiablilloCoach() {
-        try {
-            android.net.Uri uri = android.net.Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.diablillo_amarillo);
-            binding.videoDiablillo.setVideoURI(uri);
-            binding.videoDiablillo.setOnPreparedListener(mp -> {
-                mp.setLooping(true);
-                mp.start();
-            });
-            binding.videoDiablillo.setOnErrorListener((mp, what, extra) -> true);
-            binding.videoDiablillo.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        textToSpeech = new TextToSpeech(this, status -> {
-            if (status == TextToSpeech.SUCCESS) {
-                textToSpeech.setLanguage(new Locale("es", "ES"));
-                speakRandomRoast();
-            }
-        });
-
-        binding.cardDiablilloCoach.setOnClickListener(v -> speakRandomRoast());
+        binding.cardDiablilloCoach.setOnClickListener(v -> showNextRoastText());
     }
 
-    private void speakRandomRoast() {
+    private void showNextRoastText() {
         if (roasts.length > 0) {
             int index = new java.util.Random().nextInt(roasts.length);
             String roast = roasts[index];
             binding.tvDiablilloSpeech.setText(roast);
-            if (textToSpeech != null) {
-                textToSpeech.speak(roast, TextToSpeech.QUEUE_FLUSH, null, null);
-            }
         }
     }
 
@@ -295,8 +373,8 @@ public class MainOptionsActivity extends BaseActivity implements CalendarGridAda
     }
 
     private void updateCounters() {
-        // 1. This week count (Monday to Sunday)
-        int thisWeekCount = 0;
+        // 1. Workouts this week (Monday to Sunday)
+        int thisWeekDays = 0;
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.HOUR_OF_DAY, 0);
         cal.set(Calendar.MINUTE, 0);
@@ -317,25 +395,28 @@ public class MainOptionsActivity extends BaseActivity implements CalendarGridAda
                 if (d != null) {
                     long t = d.getTime();
                     if (t >= mondayMillis && t < nextMondayMillis) {
-                        thisWeekCount++;
+                        thisWeekDays++;
                     }
                 }
             } catch (Exception ignored) {}
         }
 
-        // 2. Course count (since September 1st)
-        int courseCount = 0;
-        int courseStartYear = currentMonth >= Calendar.SEPTEMBER ? currentYear : currentYear - 1;
-        String courseStartDateStr = String.format(Locale.US, "%04d-09-01", courseStartYear);
+        // 2. Workouts this course (since September 1st)
+        int courseDays = 0;
+        Calendar today = Calendar.getInstance();
+        int y = today.get(Calendar.YEAR);
+        int m = today.get(Calendar.MONTH);
+        int startYear = m >= Calendar.SEPTEMBER ? y : y - 1;
+        String startDateStr = String.format(Locale.US, "%04d-09-01", startYear);
 
         for (String date : logsMap.keySet()) {
-            if (date.compareTo(courseStartDateStr) >= 0) {
-                courseCount++;
+            if (date.compareTo(startDateStr) >= 0) {
+                courseDays++;
             }
         }
 
-        binding.tvThisWeekCount.setText(thisWeekCount + " días");
-        binding.tvCourseCount.setText(courseCount + " días");
+        binding.tvThisWeekCount.setText(thisWeekDays + (thisWeekDays == 1 ? " día" : " días"));
+        binding.tvCourseCount.setText(courseDays + (courseDays == 1 ? " día" : " días"));
     }
 
     private String getDisplayDateText(String dateStr) {
@@ -422,7 +503,7 @@ public class MainOptionsActivity extends BaseActivity implements CalendarGridAda
                 dialogBinding.spinnerRoutines.setSelection(index);
             }
         } else {
-            dialogBinding.switchAttended.setChecked(true); // Default to ON when registering
+            dialogBinding.switchAttended.setChecked(true);
             dialogBinding.llRoutineDetails.setVisibility(View.VISIBLE);
             dialogBinding.btnDeleteLog.setVisibility(View.GONE);
         }

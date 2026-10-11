@@ -86,10 +86,10 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
                 binding.tvSetsRepsSummary.setVisibility(View.GONE);
             }
 
-            if (exercise.getImageResource() != 0) {
+            if (exercise.getImageResource() != 0 && exercise.getImageResource() != R.drawable.image_placeholder) {
                 binding.ivExerciseImage.setImageResource(exercise.getImageResource());
             } else {
-                binding.ivExerciseImage.setImageResource(R.drawable.image_placeholder);
+                binding.ivExerciseImage.setImageResource(R.drawable.red_devil_mad);
             }
 
             binding.getRoot().setOnClickListener(v -> {

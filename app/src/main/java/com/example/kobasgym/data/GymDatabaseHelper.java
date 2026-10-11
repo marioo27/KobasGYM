@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.kobasgym.R;
 import com.example.kobasgym.model.Exercise;
 import com.example.kobasgym.model.ExerciseVariation;
 import com.example.kobasgym.model.Routine;
@@ -362,6 +363,9 @@ public class GymDatabaseHelper extends SQLiteOpenHelper {
                 String rDesc = rCursor.getString(rCursor.getColumnIndexOrThrow("description"));
                 int rDescRes = rCursor.getInt(rCursor.getColumnIndexOrThrow("description_res_id"));
                 int rImage = rCursor.getInt(rCursor.getColumnIndexOrThrow("image_resource"));
+                if (rImage == 0 || rImage == R.drawable.ic_dumbbell) {
+                    rImage = R.drawable.red_devil_mad;
+                }
 
                 List<Exercise> exercises = getExercisesForRoutine(db, rId);
 
@@ -382,6 +386,9 @@ public class GymDatabaseHelper extends SQLiteOpenHelper {
                 String exName = exCursor.getString(exCursor.getColumnIndexOrThrow("name"));
                 int exNameRes = exCursor.getInt(exCursor.getColumnIndexOrThrow("name_res_id"));
                 int exImage = exCursor.getInt(exCursor.getColumnIndexOrThrow("image_resource"));
+                if (exImage == 0 || exImage == R.drawable.image_placeholder) {
+                    exImage = R.drawable.red_devil_mad;
+                }
                 boolean isExtra = exCursor.getInt(exCursor.getColumnIndexOrThrow("is_extra")) == 1;
 
                 List<ExerciseVariation> variations = getVariationsForExercise(db, exId);
@@ -410,6 +417,9 @@ public class GymDatabaseHelper extends SQLiteOpenHelper {
                 String notes = varCursor.getString(varCursor.getColumnIndexOrThrow("notes"));
                 int notesRes = varCursor.getInt(varCursor.getColumnIndexOrThrow("notes_res_id"));
                 int image = varCursor.getInt(varCursor.getColumnIndexOrThrow("image_resource"));
+                if (image == 0 || image == R.drawable.image_placeholder) {
+                    image = R.drawable.red_devil_mad;
+                }
 
                 List<Double> setWeights = getSetWeightsForVariation(db, varId);
 

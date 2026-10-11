@@ -11,3 +11,4 @@ local.properties
 .artifacts/
 *.apk
 *.aar
+/License/

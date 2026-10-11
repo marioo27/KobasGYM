@@ -79,10 +79,10 @@ public class VariationAdapter extends RecyclerView.Adapter<VariationAdapter.Vari
                 binding.tvVariationNotes.setText(notes);
             }
 
-            if (variation.getImageResource() != 0) {
+            if (variation.getImageResource() != 0 && variation.getImageResource() != R.drawable.image_placeholder) {
                 binding.ivVariationImage.setImageResource(variation.getImageResource());
             } else {
-                binding.ivVariationImage.setImageResource(R.drawable.image_placeholder);
+                binding.ivVariationImage.setImageResource(R.drawable.red_devil_mad);
             }
 
             binding.getRoot().setOnClickListener(v -> {

@@ -29,10 +29,10 @@
 
             <ImageView
                 android:id="@+id/ivRoutineIcon"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/ic_dumbbell"
-                app:tint="@color/blue_primary"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/red_devil_mad"
                 android:contentDescription="@null" />
 
             <LinearLayout

@@ -68,20 +68,29 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
             binding.tvRoutineName.setText(routine.getDisplayName(context));
 
             String desc = routine.getDisplayDescription(context);
-            if (TextUtils.isEmpty(desc)) {
+            String abbrev = routine.getAbbreviation();
+            String fullDesc = "";
+            if (!TextUtils.isEmpty(abbrev)) {
+                fullDesc = "[" + abbrev + "] ";
+            }
+            if (!TextUtils.isEmpty(desc)) {
+                fullDesc += desc;
+            }
+
+            if (TextUtils.isEmpty(fullDesc)) {
                 binding.tvRoutineDescription.setVisibility(View.GONE);
             } else {
                 binding.tvRoutineDescription.setVisibility(View.VISIBLE);
-                binding.tvRoutineDescription.setText(desc);
+                binding.tvRoutineDescription.setText(fullDesc);
             }
 
             int exCount = routine.getExercises() != null ? routine.getExercises().size() : 0;
             binding.tvExercisesCount.setText(context.getString(R.string.exercises_count_format, exCount));
 
-            if (routine.getImageResource() != 0) {
+            if (routine.getImageResource() != 0 && routine.getImageResource() != R.drawable.ic_dumbbell) {
                 binding.ivRoutineIcon.setImageResource(routine.getImageResource());
             } else {
-                binding.ivRoutineIcon.setImageResource(R.drawable.ic_dumbbell);
+                binding.ivRoutineIcon.setImageResource(R.drawable.red_devil_mad);
             }
 
             binding.getRoot().setOnClickListener(v -> {

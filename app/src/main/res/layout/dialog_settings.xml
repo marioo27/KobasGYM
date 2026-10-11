@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#ECEFF1"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ajustes de Koba's GYM"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Unidad de peso:"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="#37474F"
+        android:layout_marginBottom="8dp" />
+
+    <RadioGroup
+        android:id="@+id/rgWeightUnit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
+
+        <RadioButton
+            android:id="@+id/rbKg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Kilos (kg)"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/rbLbs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Libras (lbs)"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+    </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#B0BEC5"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Export JSON Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnExportJson"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginBottom="12dp"
+        android:text="Exportar JSON de Rutinas"
+        app:strokeColor="@color/blue_primary"
+        android:textColor="@color/blue_primary"
+        app:cornerRadius="12dp" />
+
+    <!-- Import / Load JSON Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnImportJson"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginBottom="12dp"
+        android:text="Cargar / Importar JSON"
+        app:strokeColor="@color/blue_primary"
+        android:textColor="@color/blue_primary"
+        app:cornerRadius="12dp" />
+
+    <!-- Credits Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCredits"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="Créditos"
+        app:strokeColor="#757575"
+        android:textColor="#212121"
+        app:cornerRadius="12dp" />
+
+</LinearLayout>
