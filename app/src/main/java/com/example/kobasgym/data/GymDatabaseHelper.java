@@ -531,4 +531,54 @@ public class GymDatabaseHelper extends SQLiteOpenHelper {
         }
         return map;
     }
+
+    public void updateRoutinePositions(List<Routine> routines) {
+        if (routines == null) return;
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        try {
+            for (int i = 0; i < routines.size(); i++) {
+                ContentValues cv = new ContentValues();
+                cv.put("position", i);
+                db.update(TABLE_ROUTINES, cv, "id = ?", new String[]{routines.get(i).getId()});
+            }
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+        }
+    }
+
+    public void updateExercisePositions(String routineId, List<Exercise> exercises) {
+        if (exercises == null) return;
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        try {
+            for (int i = 0; i < exercises.size(); i++) {
+                ContentValues cv = new ContentValues();
+                cv.put("position", i);
+                cv.put("routine_id", routineId);
+                db.update(TABLE_EXERCISES, cv, "id = ?", new String[]{exercises.get(i).getId()});
+            }
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+        }
+    }
+
+    public void updateVariationPositions(String exerciseId, List<ExerciseVariation> variations) {
+        if (variations == null) return;
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        try {
+            for (int i = 0; i < variations.size(); i++) {
+                ContentValues cv = new ContentValues();
+                cv.put("position", i);
+                cv.put("exercise_id", exerciseId);
+                db.update(TABLE_VARIATIONS, cv, "id = ?", new String[]{variations.get(i).getId()});
+            }
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+        }
+    }
 }

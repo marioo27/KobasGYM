@@ -6,8 +6,11 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kobasgym.R;
 import com.example.kobasgym.adapter.ExerciseAdapter;
@@ -62,6 +65,31 @@ public class RoutineDetailActivity extends BaseActivity implements ExerciseAdapt
         binding.rvExercises.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ExerciseAdapter(this, new ArrayList<>(), this);
         binding.rvExercises.setAdapter(adapter);
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(
+                ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView,
+                                  @NonNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull RecyclerView.ViewHolder target) {
+                int fromPos = viewHolder.getAdapterPosition();
+                int toPos = target.getAdapterPosition();
+                adapter.onItemMove(fromPos, toPos);
+                return true;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            }
+
+            @Override
+            public void clearView(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                super.clearView(recyclerView, viewHolder);
+                WorkoutDataManager.getInstance().reorderExercises(routineId, adapter.getExercises());
+            }
+        });
+        itemTouchHelper.attachToRecyclerView(binding.rvExercises);
+        adapter.setOnStartDragListener(itemTouchHelper::startDrag);
     }
 
     private void loadRoutineData() {

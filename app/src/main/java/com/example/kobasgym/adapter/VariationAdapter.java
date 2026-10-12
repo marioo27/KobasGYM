@@ -3,6 +3,7 @@ package com.example.kobasgym.adapter;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -13,6 +14,7 @@ import com.example.kobasgym.R;
 import com.example.kobasgym.databinding.ItemVariationBinding;
 import com.example.kobasgym.model.ExerciseVariation;
 
+import java.util.Collections;
 import java.util.List;
 
 public class VariationAdapter extends RecyclerView.Adapter<VariationAdapter.VariationViewHolder> {
@@ -23,19 +25,51 @@ public class VariationAdapter extends RecyclerView.Adapter<VariationAdapter.Vari
         void onDeleteVariation(ExerciseVariation variation);
     }
 
+    public interface OnStartDragListener {
+        void onStartDrag(RecyclerView.ViewHolder viewHolder);
+    }
+
     private final Context context;
     private List<ExerciseVariation> variations;
     private final OnVariationClickListener listener;
+    private OnStartDragListener dragListener;
 
     public VariationAdapter(Context context, List<ExerciseVariation> variations, OnVariationClickListener listener) {
+        this(context, variations, listener, null);
+    }
+
+    public VariationAdapter(Context context, List<ExerciseVariation> variations, OnVariationClickListener listener, OnStartDragListener dragListener) {
         this.context = context;
         this.variations = variations;
         this.listener = listener;
+        this.dragListener = dragListener;
+    }
+
+    public void setOnStartDragListener(OnStartDragListener dragListener) {
+        this.dragListener = dragListener;
     }
 
     public void setVariations(List<ExerciseVariation> variations) {
         this.variations = variations;
         notifyDataSetChanged();
+    }
+
+    public List<ExerciseVariation> getVariations() {
+        return variations;
+    }
+
+    public boolean onItemMove(int fromPosition, int toPosition) {
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(variations, i, i + 1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(variations, i, i - 1);
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition);
+        return true;
     }
 
     @NonNull
@@ -48,7 +82,7 @@ public class VariationAdapter extends RecyclerView.Adapter<VariationAdapter.Vari
 
     @Override
     public void onBindViewHolder(@NonNull VariationViewHolder holder, int position) {
-        holder.bind(variations.get(position), context, listener);
+        holder.bind(variations.get(position), context, listener, dragListener);
     }
 
     @Override
@@ -64,7 +98,7 @@ public class VariationAdapter extends RecyclerView.Adapter<VariationAdapter.Vari
             this.binding = binding;
         }
 
-        public void bind(ExerciseVariation variation, Context context, OnVariationClickListener listener) {
+        public void bind(ExerciseVariation variation, Context context, OnVariationClickListener listener, OnStartDragListener dragListener) {
             binding.tvVariationName.setText(variation.getDisplayName(context));
 
             String setsRepsWeight = context.getString(R.string.sets_reps_format, variation.getSets(), variation.getRepetitions())
@@ -91,6 +125,13 @@ public class VariationAdapter extends RecyclerView.Adapter<VariationAdapter.Vari
 
             binding.btnEditVariation.setOnClickListener(v -> {
                 if (listener != null) listener.onEditVariation(variation);
+            });
+
+            binding.ivDragHandle.setOnTouchListener((v, event) -> {
+                if (event.getActionMasked() == MotionEvent.ACTION_DOWN && dragListener != null) {
+                    dragListener.onStartDrag(this);
+                }
+                return false;
             });
         }
     }

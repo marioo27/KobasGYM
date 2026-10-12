@@ -8,9 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.kobasgym.R;
@@ -208,16 +206,36 @@ public class MainOptionsActivity extends BaseActivity implements CalendarGridAda
         refreshAllData();
     }
 
+    private int coachTurnIndex = 0;
+    private final String[] yellowRoasts = {
+        "¿Eso es todo lo que vas a levantar hoy? ¡Mi abuela calienta con más peso!",
+        "¿Hoy tocaba entrenar o venías a hacer amigos al vestuario?",
+        "¡Menuda técnica... de risa! Menos mirar el móvil y más sudar.",
+        "¿Seguro que esas mancuernas no son de plástico?",
+        "¿Otra vez con excusas? ¡A darle duro!"
+    };
+    private final String[] blueHydration = {
+        "¡Bebe agua y mantente hidratado! El músculo necesita agua para crecer, no solo excusas.",
+        "¿Ya te has bebido la botella de agua? ¡Hidratación al poder antes de seguir levantando hierro!"
+    };
+
     private void setupDiablilloCoach() {
-        binding.cardDiablilloCoach.setOnClickListener(v -> showNextRoastText());
+        binding.cardDiablilloCoach.setOnClickListener(v -> showNextCoachMessage());
     }
 
-    private void showNextRoastText() {
-        if (roasts.length > 0) {
-            int index = new java.util.Random().nextInt(roasts.length);
-            String roast = roasts[index];
-            binding.tvDiablilloSpeech.setText(roast);
+    private void showNextCoachMessage() {
+        if (coachTurnIndex < 2) {
+            binding.ivCoachImage.setImageResource(R.drawable.yellow_devil_muscle);
+            binding.tvCoachTitle.setText("Coach Diablillo");
+            int rIdx = new java.util.Random().nextInt(yellowRoasts.length);
+            binding.tvDiablilloSpeech.setText(yellowRoasts[rIdx]);
+        } else {
+            binding.ivCoachImage.setImageResource(R.drawable.blue_devil_water);
+            binding.tvCoachTitle.setText("Coach Hidratación 💧");
+            int bIdx = new java.util.Random().nextInt(blueHydration.length);
+            binding.tvDiablilloSpeech.setText(blueHydration[bIdx]);
         }
+        coachTurnIndex = (coachTurnIndex + 1) % 3;
     }
 
     private String formatDateStr(int year, int monthZeroBased, int day) {

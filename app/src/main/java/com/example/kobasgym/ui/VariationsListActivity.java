@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kobasgym.R;
 import com.example.kobasgym.adapter.VariationAdapter;
@@ -63,6 +66,31 @@ public class VariationsListActivity extends BaseActivity implements VariationAda
         binding.rvVariations.setLayoutManager(new LinearLayoutManager(this));
         adapter = new VariationAdapter(this, new ArrayList<>(), this);
         binding.rvVariations.setAdapter(adapter);
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(
+                ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView,
+                                  @NonNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull RecyclerView.ViewHolder target) {
+                int fromPos = viewHolder.getAdapterPosition();
+                int toPos = target.getAdapterPosition();
+                adapter.onItemMove(fromPos, toPos);
+                return true;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            }
+
+            @Override
+            public void clearView(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                super.clearView(recyclerView, viewHolder);
+                WorkoutDataManager.getInstance().reorderVariations(routineId, exerciseId, adapter.getVariations());
+            }
+        });
+        itemTouchHelper.attachToRecyclerView(binding.rvVariations);
+        adapter.setOnStartDragListener(itemTouchHelper::startDrag);
     }
 
     private void loadExerciseData() {

@@ -3,6 +3,7 @@ package com.example.kobasgym.adapter;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -13,6 +14,7 @@ import com.example.kobasgym.R;
 import com.example.kobasgym.databinding.ItemRoutineBinding;
 import com.example.kobasgym.model.Routine;
 
+import java.util.Collections;
 import java.util.List;
 
 public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineViewHolder> {
@@ -23,19 +25,51 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
         void onDeleteRoutine(Routine routine);
     }
 
+    public interface OnStartDragListener {
+        void onStartDrag(RecyclerView.ViewHolder viewHolder);
+    }
+
     private final Context context;
     private List<Routine> routines;
     private final OnRoutineClickListener listener;
+    private OnStartDragListener dragListener;
 
     public RoutineAdapter(Context context, List<Routine> routines, OnRoutineClickListener listener) {
+        this(context, routines, listener, null);
+    }
+
+    public RoutineAdapter(Context context, List<Routine> routines, OnRoutineClickListener listener, OnStartDragListener dragListener) {
         this.context = context;
         this.routines = routines;
         this.listener = listener;
+        this.dragListener = dragListener;
+    }
+
+    public void setOnStartDragListener(OnStartDragListener dragListener) {
+        this.dragListener = dragListener;
     }
 
     public void setRoutines(List<Routine> routines) {
         this.routines = routines;
         notifyDataSetChanged();
+    }
+
+    public List<Routine> getRoutines() {
+        return routines;
+    }
+
+    public boolean onItemMove(int fromPosition, int toPosition) {
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(routines, i, i + 1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(routines, i, i - 1);
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition);
+        return true;
     }
 
     @NonNull
@@ -48,7 +82,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
 
     @Override
     public void onBindViewHolder(@NonNull RoutineViewHolder holder, int position) {
-        holder.bind(routines.get(position), context, listener);
+        holder.bind(routines.get(position), context, listener, dragListener);
     }
 
     @Override
@@ -64,7 +98,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
             this.binding = binding;
         }
 
-        public void bind(Routine routine, Context context, OnRoutineClickListener listener) {
+        public void bind(Routine routine, Context context, OnRoutineClickListener listener, OnStartDragListener dragListener) {
             binding.tvRoutineName.setText(routine.getDisplayName(context));
 
             String desc = routine.getDisplayDescription(context);
@@ -99,6 +133,13 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
 
             binding.btnEditRoutine.setOnClickListener(v -> {
                 if (listener != null) listener.onEditRoutine(routine);
+            });
+
+            binding.ivDragHandle.setOnTouchListener((v, event) -> {
+                if (event.getActionMasked() == MotionEvent.ACTION_DOWN && dragListener != null) {
+                    dragListener.onStartDrag(this);
+                }
+                return false;
             });
         }
     }

@@ -433,6 +433,38 @@ public class WorkoutDataManager {
         }
     }
 
+    public synchronized void reorderRoutines(List<Routine> reorderedList) {
+        if (reorderedList == null) return;
+        routines.clear();
+        routines.addAll(reorderedList);
+        if (dbHelper != null) {
+            dbHelper.updateRoutinePositions(routines);
+        }
+        exportJsonFile();
+    }
+
+    public synchronized void reorderExercises(String routineId, List<Exercise> reorderedList) {
+        Routine routine = getRoutineById(routineId);
+        if (routine != null && reorderedList != null) {
+            routine.setExercises(reorderedList);
+            if (dbHelper != null) {
+                dbHelper.updateExercisePositions(routineId, reorderedList);
+            }
+            exportJsonFile();
+        }
+    }
+
+    public synchronized void reorderVariations(String routineId, String exerciseId, List<ExerciseVariation> reorderedList) {
+        Exercise exercise = getExerciseById(routineId, exerciseId);
+        if (exercise != null && reorderedList != null) {
+            exercise.setVariations(reorderedList);
+            if (dbHelper != null) {
+                dbHelper.updateVariationPositions(exerciseId, reorderedList);
+            }
+            exportJsonFile();
+        }
+    }
+
     public synchronized Routine getUpperBodyRoutine() {
         for (Routine routine : routines) {
             if (routine.getNameResId() == R.string.routine_upper_body) {

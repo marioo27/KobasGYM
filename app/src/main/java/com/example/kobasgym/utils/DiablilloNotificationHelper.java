@@ -47,7 +47,7 @@ public class DiablilloNotificationHelper {
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
 
-        Bitmap diablilloBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.diablillo_rojo);
+        Bitmap diablilloBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.red_devil);
 
         CharSequence coloredTitle = Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
                 ? Html.fromHtml("<font color='#D32F2F'><b>Coach Diablillo Rojo 😈</b></font>", Html.FROM_HTML_MODE_LEGACY)
@@ -58,7 +58,7 @@ public class DiablilloNotificationHelper {
                 : Html.fromHtml("<font color='#D32F2F'>" + message + "</font>");
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.diablillo_rojo)
+                .setSmallIcon(R.drawable.red_devil)
                 .setLargeIcon(diablilloBitmap)
                 .setContentTitle(coloredTitle)
                 .setContentText(coloredText)

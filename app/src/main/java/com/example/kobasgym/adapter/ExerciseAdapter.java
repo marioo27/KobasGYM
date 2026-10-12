@@ -2,6 +2,7 @@ package com.example.kobasgym.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -13,6 +14,7 @@ import com.example.kobasgym.databinding.ItemExerciseBinding;
 import com.example.kobasgym.model.Exercise;
 import com.example.kobasgym.model.ExerciseVariation;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder> {
@@ -23,19 +25,51 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
         void onDeleteExercise(Exercise exercise);
     }
 
+    public interface OnStartDragListener {
+        void onStartDrag(RecyclerView.ViewHolder viewHolder);
+    }
+
     private final Context context;
     private List<Exercise> exercises;
     private final OnExerciseClickListener listener;
+    private OnStartDragListener dragListener;
 
     public ExerciseAdapter(Context context, List<Exercise> exercises, OnExerciseClickListener listener) {
+        this(context, exercises, listener, null);
+    }
+
+    public ExerciseAdapter(Context context, List<Exercise> exercises, OnExerciseClickListener listener, OnStartDragListener dragListener) {
         this.context = context;
         this.exercises = exercises;
         this.listener = listener;
+        this.dragListener = dragListener;
+    }
+
+    public void setOnStartDragListener(OnStartDragListener dragListener) {
+        this.dragListener = dragListener;
     }
 
     public void setExercises(List<Exercise> exercises) {
         this.exercises = exercises;
         notifyDataSetChanged();
+    }
+
+    public List<Exercise> getExercises() {
+        return exercises;
+    }
+
+    public boolean onItemMove(int fromPosition, int toPosition) {
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(exercises, i, i + 1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(exercises, i, i - 1);
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition);
+        return true;
     }
 
     @NonNull
@@ -48,7 +82,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
 
     @Override
     public void onBindViewHolder(@NonNull ExerciseViewHolder holder, int position) {
-        holder.bind(exercises.get(position), context, listener);
+        holder.bind(exercises.get(position), context, listener, dragListener);
     }
 
     @Override
@@ -64,7 +98,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
             this.binding = binding;
         }
 
-        public void bind(Exercise exercise, Context context, OnExerciseClickListener listener) {
+        public void bind(Exercise exercise, Context context, OnExerciseClickListener listener, OnStartDragListener dragListener) {
             binding.tvExerciseName.setText(exercise.getDisplayName(context));
 
             if (exercise.isExtra()) {
@@ -98,6 +132,13 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
 
             binding.btnEditExercise.setOnClickListener(v -> {
                 if (listener != null) listener.onEditExercise(exercise);
+            });
+
+            binding.ivDragHandle.setOnTouchListener((v, event) -> {
+                if (event.getActionMasked() == MotionEvent.ACTION_DOWN && dragListener != null) {
+                    dragListener.onStartDrag(this);
+                }
+                return false;
             });
         }
     }

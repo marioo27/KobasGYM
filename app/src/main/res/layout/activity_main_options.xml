@@ -28,6 +28,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:layout_marginTop="40dp"
             android:background="#33000000"
             app:title="@string/app_name"
             app:titleTextColor="@color/white"
@@ -44,7 +45,7 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <!-- Yellow Devil Muscle Coach Card (No Video) -->
+                <!-- Coach Card (Yellow and Blue turn-taking) -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardDiablilloCoach"
                     android:layout_width="match_parent"
@@ -66,12 +67,12 @@
                         android:gravity="center_vertical">
 
                         <ImageView
-                            android:id="@+id/ivYellowDevilMuscle"
+                            android:id="@+id/ivCoachImage"
                             android:layout_width="80dp"
                             android:layout_height="80dp"
                             android:scaleType="fitCenter"
                             android:src="@drawable/yellow_devil_muscle"
-                            android:contentDescription="Yellow Devil Muscle" />
+                            android:contentDescription="Coach Character" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -81,6 +82,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/tvCoachTitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Coach Diablillo"
@@ -234,7 +236,7 @@
                                 android:id="@+id/tvThisWeekCount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="0 semanas"
+                                android:text="0 días"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
                                 android:textColor="#FF9800" />
@@ -274,7 +276,7 @@
                                 android:id="@+id/tvCourseCount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="0 semanas"
+                                android:text="0 días"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
                                 android:textColor="#FF9800" />

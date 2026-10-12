@@ -71,6 +71,16 @@
                 app:tint="@color/blue_primary"
                 android:contentDescription="@string/action_edit" />
 
+            <ImageView
+                android:id="@+id/ivDragHandle"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_drag_handle"
+                app:tint="@color/blue_primary_light"
+                android:contentDescription="@null" />
+
         </LinearLayout>
 
         <TextView
