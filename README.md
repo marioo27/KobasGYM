@@ -17,36 +17,39 @@
 **Koba's GYM** is a native Android application designed to log, manage, and master your gym workout routines easily, intuitively, and persistently. Built with Java, Material Design 3, and SQLite database storage, it ensures your training logs and routine customisations are permanently preserved.
 
 ## ✨ Key Features
-- 📋 **Routine Management & Calendar Abbreviations**: Create, edit, duplicate, and delete workout routines (Tren Superior, Tren Inferior, Custom). Each routine includes custom calendar abbreviations (e.g., **SUP** for Upper Body, **INF** for Lower Body).
+- 📋 **Routine Management & Calendar Abbreviations**: Create, edit, duplicate, and delete workout routines. Each routine includes custom calendar abbreviations (e.g., **SUP** for Upper Body, **INF** for Lower Body).
+- 🔄 **Drag & Drop Reordering**: Seamlessly reorder routines, exercises, and exercise variations using touch drag handles powered by `ItemTouchHelper`.
+- 😈 **Dynamic Devil Image Selector**: Customize routine, exercise, and variation avatars by choosing from all available mascot illustrations. New devil images added to the project are automatically discovered at runtime via reflection.
 - 🏋️ **Exercises & Extra Tags**: Add exercises to any routine, featuring a dedicated **EXTRA** badge for accessory exercises.
-- ⚖️ **Set Weights in Kilograms (kg) or Pounds (lbs)**: Dynamically configure sets, repetitions, and individual weights per set in kg or lbs with unit toggling in settings.
-- 📅 **Main Screen Workout Calendar & Counters**: Interactive Monday-starting monthly calendar directly on the main dashboard, displaying workout abbreviations inside orange circles for completed days. Includes dedicated counters for weekly and course workout days.
-- 😈 **Coach Diablillo & Notifications**: Interactive mascot assistant providing humorous gym roasts and motivational system push notifications.
+- ⚖️ **Set Weights in Kilograms (kg) or Pounds (lbs)**: Dynamically configure sets, repetitions, and individual weights per set in kg or lbs.
+- 📅 **Main Screen Workout Calendar & Counters**: Interactive Monday-starting monthly calendar directly on the dashboard, displaying workout abbreviations inside orange circles for completed days.
 - ⚙️ **Settings & JSON Backup**: Settings dialog featuring weight unit toggle, routine JSON export to Downloads, routine JSON file import, and developer credits.
 - 💾 **Real-time SQLite Persistence**: Automatic local persistence using SQLite (`kobasgym.db`) alongside continuous JSON exports (`gymRoutine.json`).
-
-## 🛠️ Architecture & Tech Stack
-- **Language**: Java 17+
-- **Min SDK**: API 24 (Android 7.0) | **Target SDK**: API 34/35
-- **UI Framework**: Android ViewBinding, Material Components 3
-- **Database**: SQLite (`SQLiteOpenHelper`)
-- **Data Interchange**: JSON
 
 ---
 
 # 🇪🇸 Versión en Español
 
 ## 📌 Descripción General
-**Koba's GYM** es una aplicación nativa para Android diseñada para ayudarte a registrar, gestionar y dominar tus rutinas de entrenamiento en el gimnasio de forma rápida, intuitiva y persistente. Desarrollada en Java, Material Design 3 y base de datos SQLite.
+**Koba's GYM** es una aplicación nativa para Android diseñada para ayudarte a registrar, gestionar y dominar tus entrenamientos en el gimnasio de forma rápida, intuitiva y persistente. Desarrollada en Java, Material Design 3 y SQLite.
 
 ## ✨ Características Principales
-- 📋 **Gestión de Rutinas y Abreviaturas**: Crea, edita, duplica y elimina rutinas de entrenamiento (*Tren Superior* -> **SUP**, *Tren Inferior* -> **INF**, etc.).
+- 📋 **Gestión de Rutinas y Abreviaturas**: Crea, edita, duplica y elimina rutinas de entrenamiento con abreviaturas personalizadas para el calendario.
+- 🔄 **Reordenamiento por Arrastre (Drag & Drop)**: Reorganiza tus rutinas, ejercicios y variaciones de forma fluida mediante tiradores de arrastre táctiles.
+- 😈 **Selector Dinámico de Diablillos**: Personaliza los avatares de tus rutinas, ejercicios y variaciones eligiendo entre todas las ilustraciones de diablillos disponibles. Las nuevas imágenes añadidas al proyecto se detectan automáticamente.
 - 🏋️ **Ejercicios y Etiqueta EXTRA**: Añade ejercicios y marca elementos accesorios con la etiqueta **EXTRA**.
-- ⚖️ **Series y Pesos (kg / lbs)**: Configura número de series, repeticiones y pesos individuales por serie, con opción de alternar entre kilos y libras en los ajustes.
-- 📅 **Calendario y Contadores**: Calendario mensual interactivo (iniciado en lunes) en la pantalla principal con abreviaturas en círculos naranjas y contadores de días de entrenamiento.
-- 😈 **Coach Diablillo y Notificaciones**: Asistente con ilustraciones de diablillos que ofrece frases motivacionales e irónicas y notificaciones push del sistema.
-- ⚙️ **Ajustes y Respaldo JSON**: Menú de ajustes con exportación de rutinas a la carpeta Descargas, importación de archivos JSON actualizados y ventana de créditos.
-- 💾 **Persistencia Real en SQLite**: Almacenamiento local mediante SQLite (`kobasgym.db`) y sincronización automática con `gymRoutine.json`.
+- ⚖️ **Series y Pesos (kg / lbs)**: Configura número de series, repeticiones y pesos individuales por serie.
+- 📅 **Calendario y Contadores**: Calendario mensual interactivo en la pantalla principal con abreviaturas en círculos naranjas y contadores de días de entrenamiento.
+- ⚙️ **Ajustes y Respaldo JSON**: Menú de ajustes con exportación e importación de archivos JSON de rutinas.
+- 💾 **Persistencia Real en SQLite**: Almacenamiento local mediante SQLite (`kobasgym.db`) y sincronización con `gymRoutine.json`.
+
+---
+
+## 📸 Screenshots / Capturas de Pantalla
+
+| Dashboard & Calendar | Devil Image Picker |
+| :---: | :---: |
+| ![Dashboard](screenshots/dashboard.png) | ![Picker](screenshots/picker.png) |
 
 ---
 

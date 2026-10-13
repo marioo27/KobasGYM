@@ -6,6 +6,9 @@
     <string name="welcome_title">Koba\'s GYM</string>
     <string name="welcome_subtitle">Tu compañero definitivo de rutinas de gimnasio. Registra, edita y domina tus entrenamientos.</string>
     <string name="btn_start">Comenzar</string>
+    <string name="lang_en">English</string>
+    <string name="lang_es">Español</string>
+    <string name="select_language">Language / Idioma</string>
 
     <!-- Main Options Screen -->
     <string name="options_title">Opciones Principales</string>
@@ -40,6 +43,7 @@
     <string name="dialog_create_exercise_title">Añadir Ejercicio</string>
     <string name="dialog_edit_exercise_title">Editar Ejercicio</string>
     <string name="hint_exercise_name">Nombre del ejercicio</string>
+    <string name="hint_exercise_muscle_group">Grupo muscular</string>
     <string name="error_empty_exercise_name">El nombre del ejercicio no puede estar vacío.</string>
     <string name="dialog_delete_exercise_title">Eliminar Ejercicio</string>
     <string name="dialog_delete_exercise_msg">¿Estás seguro de que deseas eliminar \"%s\"?</string>
