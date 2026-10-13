@@ -9,6 +9,10 @@
   <img src="https://img.shields.io/badge/License-MIT-2ea44f?style=for-the-badge"/>
 </p>
 
+<p align="center">
+  <a href="#-english-version">English Version</a> | <a href="#-versión-en-español">Versión en Español</a>
+</p>
+
 ---
 
 # 🇬🇧 English Version
@@ -25,6 +29,23 @@
 - 📅 **Main Screen Workout Calendar & Counters**: Interactive Monday-starting monthly calendar directly on the dashboard, displaying workout abbreviations inside orange circles for completed days.
 - ⚙️ **Settings & JSON Backup**: Settings dialog featuring weight unit toggle, routine JSON export to Downloads, routine JSON file import, and developer credits.
 - 💾 **Real-time SQLite Persistence**: Automatic local persistence using SQLite (`kobasgym.db`) alongside continuous JSON exports (`gymRoutine.json`).
+
+## 📁 App Structure
+```text
+com.example.kobasgym/
+├── adapter/     # RecyclerView Adapters (Routine, Exercise, Variation, Calendar, WorkoutLog)
+├── data/        # SQLite Database Helper & Workout Data Manager (JSON & SQLite)
+├── model/       # Data classes (Routine, Exercise, ExerciseVariation, WorkoutLog, CalendarDay)
+├── ui/          # Activities (MainOptions, RoutinesList, RoutineDetail, VariationsList, VariationDetail, Calendar, Welcome)
+└── utils/       # Helpers (DevilImagePickerHelper, DiablilloNotificationHelper, LocaleManager)
+```
+
+## 🛠️ Prerequisites & Tech Stack
+- **Prerequisites**: Android Studio (Koala/Jellyfish+), Android SDK (Min SDK 24, Target SDK 34+), Java 17 JDK, Physical Device or Emulator (API 24+).
+- **Language**: Java 17+
+- **UI Framework**: Android ViewBinding, Material Components 3
+- **Database**: SQLite (`SQLiteOpenHelper`)
+- **Data Interchange**: JSON
 
 ---
 
@@ -43,17 +64,27 @@
 - ⚙️ **Ajustes y Respaldo JSON**: Menú de ajustes con exportación e importación de archivos JSON de rutinas.
 - 💾 **Persistencia Real en SQLite**: Almacenamiento local mediante SQLite (`kobasgym.db`) y sincronización con `gymRoutine.json`.
 
----
+## 📁 Estructura de la Aplicación
+```text
+com.example.kobasgym/
+├── adapter/     # Adaptadores de RecyclerView (Rutinas, Ejercicios, Variaciones, Calendario, Logs)
+├── data/        # Administrador de datos y SQLite (GymDatabaseHelper, WorkoutDataManager)
+├── model/       # Modelos de datos (Routine, Exercise, ExerciseVariation, WorkoutLog, CalendarDay)
+├── ui/          # Actividades (MainOptions, RoutinesList, RoutineDetail, VariationsList, VariationDetail, Calendar, Welcome)
+└── utils/       # Utilidades (DevilImagePickerHelper, DiablilloNotificationHelper, LocaleManager)
+```
 
-## 📸 Screenshots / Capturas de Pantalla
-
-| Dashboard & Calendar | Devil Image Picker |
-| :---: | :---: |
-| ![Dashboard](screenshots/dashboard.png) | ![Picker](screenshots/picker.png) |
+## 🛠️ Requisitos y Tecnologías
+- **Qué se necesita**: Android Studio, Android SDK (Mínimo API 24, Destino API 34+), JDK 17, Dispositivo físico o Emulador Android.
+- **Lenguaje**: Java 17+
+- **Interfaz de Usuario**: Android ViewBinding, Material Components 3
+- **Base de Datos**: SQLite (`SQLiteOpenHelper`)
+- **Intercambio de Datos**: JSON
 
 ---
 
 ## 📄 Licensing & Attribution / Licencias y Atribución
+- **License / Licencia**: Este proyecto se distribuye bajo la **Licencia MIT** (*MIT License*).
 - **Desarrollado por**: Mario García Rodríguez.
 - **Personajes e Ilustraciones**: Basados en recursos de video de Vecteezy: [Monster Stock Videos by Vecteezy](https://www.vecteezy.com/free-videos/monster), con versiones personalizadas para la app.
 
