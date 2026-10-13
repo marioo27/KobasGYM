@@ -7,6 +7,47 @@
     android:background="@color/surface_white"
     android:padding="20dp">
 
+    <LinearLayout
+        android:id="@+id/llSelectExerciseImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:cardCornerRadius="40dp"
+            app:cardElevation="3dp"
+            app:cardBackgroundColor="#1E293B"
+            app:strokeColor="@color/blue_primary_light"
+            app:strokeWidth="1dp">
+
+            <ImageView
+                android:id="@+id/ivExerciseIconSelect"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                android:src="@drawable/red_devil_mad"
+                android:contentDescription="@null" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/change_image_hint"
+            android:textSize="12sp"
+            android:textColor="@color/blue_primary"
+            android:textStyle="bold" />
+    </LinearLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilExerciseName"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"

@@ -35,6 +35,7 @@ public class VariationDetailActivity extends BaseActivity {
     private ExerciseVariation currentVariation;
     private final List<TextInputEditText> setWeightInputFields = new ArrayList<>();
     private boolean isUpdatingSetsUI = false;
+    private int selectedImageResId = R.drawable.red_devil_mad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,13 @@ public class VariationDetailActivity extends BaseActivity {
         setupToolbar();
         setupSetsWatcher();
         loadVariationData();
+
+        binding.llSelectVariationImage.setOnClickListener(v -> {
+            com.example.kobasgym.utils.DevilImagePickerHelper.showPicker(this, drawableResId -> {
+                selectedImageResId = drawableResId;
+                binding.ivVariationDetailImage.setImageResource(drawableResId);
+            });
+        });
 
         binding.btnSaveVariation.setOnClickListener(v -> saveVariation());
         binding.btnCancelVariation.setOnClickListener(v -> finish());
@@ -193,7 +201,8 @@ public class VariationDetailActivity extends BaseActivity {
             binding.etNotes.setText(currentVariation.getDisplayNotes(this));
 
             if (currentVariation.getImageResource() != 0) {
-                binding.ivVariationDetailImage.setImageResource(currentVariation.getImageResource());
+                selectedImageResId = currentVariation.getImageResource();
+                binding.ivVariationDetailImage.setImageResource(selectedImageResId);
             }
 
             renderSetWeightInputs(currentVariation.getSets(), currentVariation.getSetWeights());
@@ -274,6 +283,7 @@ public class VariationDetailActivity extends BaseActivity {
             currentVariation.setRestSeconds(0);
             currentVariation.setNotes(notes);
             currentVariation.setNotesResId(0);
+            currentVariation.setImageResource(selectedImageResId);
 
             WorkoutDataManager.getInstance().updateVariation(routineId, exerciseId, currentVariation);
         } else {
@@ -282,7 +292,7 @@ public class VariationDetailActivity extends BaseActivity {
                     name, 0,
                     sets, reps, primaryWeight, unit, 0,
                     notes, 0,
-                    R.drawable.image_placeholder
+                    selectedImageResId
             );
             newVar.setSetWeights(setWeights);
             WorkoutDataManager.getInstance().addVariation(routineId, exerciseId, newVar);

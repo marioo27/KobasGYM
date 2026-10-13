@@ -45,25 +45,46 @@
                 android:padding="20dp">
 
                 <!-- Image Preview Card -->
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                <LinearLayout
+                    android:id="@+id/llSelectVariationImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="20dp"
-                    app:cardCornerRadius="50dp"
-                    app:cardElevation="3dp"
-                    app:cardBackgroundColor="#1E293B"
-                    app:strokeColor="@color/blue_primary_light"
-                    app:strokeWidth="1dp">
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground">
 
-                    <ImageView
-                        android:id="@+id/ivVariationDetailImage"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/image_placeholder"
-                        android:contentDescription="@null" />
-                </com.google.android.material.card.MaterialCardView>
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        app:cardCornerRadius="50dp"
+                        app:cardElevation="3dp"
+                        app:cardBackgroundColor="#1E293B"
+                        app:strokeColor="@color/blue_primary_light"
+                        app:strokeWidth="1dp">
+
+                        <ImageView
+                            android:id="@+id/ivVariationDetailImage"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/red_devil_mad"
+                            android:contentDescription="@null" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="@string/change_image_hint"
+                        android:textSize="12sp"
+                        android:textColor="@color/blue_primary_light"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <!-- Name -->
                 <com.google.android.material.textfield.TextInputLayout

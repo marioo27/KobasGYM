@@ -135,6 +135,16 @@ public class RoutineDetailActivity extends BaseActivity implements ExerciseAdapt
     public void onEditExercise(Exercise exercise) {
         DialogCreateExerciseBinding dialogBinding = DialogCreateExerciseBinding.inflate(LayoutInflater.from(this));
 
+        final int[] selectedImage = {exercise.getImageResource() != 0 ? exercise.getImageResource() : R.drawable.red_devil_mad};
+        dialogBinding.ivExerciseIconSelect.setImageResource(selectedImage[0]);
+
+        dialogBinding.llSelectExerciseImage.setOnClickListener(v -> {
+            com.example.kobasgym.utils.DevilImagePickerHelper.showPicker(this, drawableResId -> {
+                selectedImage[0] = drawableResId;
+                dialogBinding.ivExerciseIconSelect.setImageResource(drawableResId);
+            });
+        });
+
         dialogBinding.etExerciseName.setText(exercise.getDisplayName(this));
         dialogBinding.switchIsExtra.setChecked(exercise.isExtra());
         dialogBinding.btnDeleteExercise.setVisibility(View.VISIBLE);
@@ -167,6 +177,7 @@ public class RoutineDetailActivity extends BaseActivity implements ExerciseAdapt
             exercise.setName(name);
             exercise.setNameResId(0);
             exercise.setExtra(isExtra);
+            exercise.setImageResource(selectedImage[0]);
 
             WorkoutDataManager.getInstance().updateExercise(routineId, exercise);
             loadRoutineData();
@@ -190,6 +201,16 @@ public class RoutineDetailActivity extends BaseActivity implements ExerciseAdapt
     private void showEditRoutineDialog() {
         if (currentRoutine == null) return;
         DialogCreateRoutineBinding dialogBinding = DialogCreateRoutineBinding.inflate(LayoutInflater.from(this));
+
+        final int[] selectedImage = {currentRoutine.getImageResource() != 0 ? currentRoutine.getImageResource() : R.drawable.red_devil_mad};
+        dialogBinding.ivRoutineIconSelect.setImageResource(selectedImage[0]);
+
+        dialogBinding.llSelectRoutineImage.setOnClickListener(v -> {
+            com.example.kobasgym.utils.DevilImagePickerHelper.showPicker(this, drawableResId -> {
+                selectedImage[0] = drawableResId;
+                dialogBinding.ivRoutineIconSelect.setImageResource(drawableResId);
+            });
+        });
 
         dialogBinding.etRoutineName.setText(currentRoutine.getDisplayName(this));
         dialogBinding.etRoutineDescription.setText(currentRoutine.getDisplayDescription(this));
@@ -238,6 +259,7 @@ public class RoutineDetailActivity extends BaseActivity implements ExerciseAdapt
             currentRoutine.setDescription(desc);
             currentRoutine.setDescriptionResId(0);
             currentRoutine.setAbbreviation(abbrev);
+            currentRoutine.setImageResource(selectedImage[0]);
 
             WorkoutDataManager.getInstance().updateRoutine(currentRoutine);
             loadRoutineData();
@@ -260,6 +282,16 @@ public class RoutineDetailActivity extends BaseActivity implements ExerciseAdapt
     private void showCreateExerciseDialog() {
         DialogCreateExerciseBinding dialogBinding = DialogCreateExerciseBinding.inflate(LayoutInflater.from(this));
         dialogBinding.btnDeleteExercise.setVisibility(View.GONE);
+
+        final int[] selectedImage = {R.drawable.red_devil_mad};
+        dialogBinding.ivExerciseIconSelect.setImageResource(selectedImage[0]);
+
+        dialogBinding.llSelectExerciseImage.setOnClickListener(v -> {
+            com.example.kobasgym.utils.DevilImagePickerHelper.showPicker(this, drawableResId -> {
+                selectedImage[0] = drawableResId;
+                dialogBinding.ivExerciseIconSelect.setImageResource(drawableResId);
+            });
+        });
 
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.dialog_create_exercise_title)
@@ -285,7 +317,7 @@ public class RoutineDetailActivity extends BaseActivity implements ExerciseAdapt
                     UUID.randomUUID().toString(),
                     name, 0,
                     "", 0,
-                    R.drawable.image_placeholder,
+                    selectedImage[0],
                     new ArrayList<>(),
                     isExtra
             );

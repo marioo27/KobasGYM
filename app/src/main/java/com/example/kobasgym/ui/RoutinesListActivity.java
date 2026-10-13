@@ -110,6 +110,16 @@ public class RoutinesListActivity extends BaseActivity implements RoutineAdapter
     public void onEditRoutine(Routine routine) {
         DialogCreateRoutineBinding dialogBinding = DialogCreateRoutineBinding.inflate(LayoutInflater.from(this));
 
+        final int[] selectedImage = {routine.getImageResource() != 0 ? routine.getImageResource() : R.drawable.red_devil_mad};
+        dialogBinding.ivRoutineIconSelect.setImageResource(selectedImage[0]);
+
+        dialogBinding.llSelectRoutineImage.setOnClickListener(v -> {
+            com.example.kobasgym.utils.DevilImagePickerHelper.showPicker(this, drawableResId -> {
+                selectedImage[0] = drawableResId;
+                dialogBinding.ivRoutineIconSelect.setImageResource(drawableResId);
+            });
+        });
+
         dialogBinding.etRoutineName.setText(routine.getDisplayName(this));
         dialogBinding.etRoutineDescription.setText(routine.getDisplayDescription(this));
         dialogBinding.btnDeleteRoutine.setVisibility(View.VISIBLE);
@@ -151,6 +161,7 @@ public class RoutinesListActivity extends BaseActivity implements RoutineAdapter
             routine.setNameResId(0);
             routine.setDescription(desc);
             routine.setDescriptionResId(0);
+            routine.setImageResource(selectedImage[0]);
 
             WorkoutDataManager.getInstance().updateRoutine(routine);
             loadRoutines();
@@ -173,6 +184,16 @@ public class RoutinesListActivity extends BaseActivity implements RoutineAdapter
 
     private void showCreateRoutineDialog() {
         DialogCreateRoutineBinding dialogBinding = DialogCreateRoutineBinding.inflate(LayoutInflater.from(this));
+
+        final int[] selectedImage = {R.drawable.red_devil_mad};
+        dialogBinding.ivRoutineIconSelect.setImageResource(selectedImage[0]);
+
+        dialogBinding.llSelectRoutineImage.setOnClickListener(v -> {
+            com.example.kobasgym.utils.DevilImagePickerHelper.showPicker(this, drawableResId -> {
+                selectedImage[0] = drawableResId;
+                dialogBinding.ivRoutineIconSelect.setImageResource(drawableResId);
+            });
+        });
 
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.dialog_create_routine_title)
@@ -203,7 +224,7 @@ public class RoutinesListActivity extends BaseActivity implements RoutineAdapter
                     name, 0,
                     desc, 0,
                     "", 0,
-                    R.drawable.ic_dumbbell,
+                    selectedImage[0],
                     abbrev,
                     new ArrayList<>()
             );
