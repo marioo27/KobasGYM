@@ -72,7 +72,7 @@ public class VariationDetailActivity extends BaseActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle(variationId != null ? R.string.edit_variation_title : R.string.add_variation_title);
         }
-        binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
+        binding.toolbar.setNavigationOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
     }
 
     private void setupSetsWatcher() {
@@ -163,7 +163,8 @@ public class VariationDetailActivity extends BaseActivity {
 
             // Unit label
             TextView tvUnit = new TextView(this);
-            tvUnit.setText("kg");
+            String unit = currentVariation != null && currentVariation.getWeightUnit() != null ? currentVariation.getWeightUnit() : "kg";
+            tvUnit.setText(unit);
             tvUnit.setTextSize(14);
             tvUnit.setTextColor(Color.parseColor("#E0E0E0"));
 

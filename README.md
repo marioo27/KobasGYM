@@ -1,8 +1,12 @@
 # 🏋️‍♂️ Monster GYM - Android Workout Manager
 
 <p align="center">
+  <img src="app/src/main/ic_logo-playstore.png" alt="Monster GYM Logo" width="120"/>
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Java-17-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Java-11%2F17-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white"/>
   <img src="https://img.shields.io/badge/Gradle-8.x-02303A?style=for-the-badge&logo=gradle&logoColor=white"/>
   <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white"/>
   <img src="https://img.shields.io/badge/Material%20Design-3-757575?style=for-the-badge&logo=materialdesign&logoColor=white"/>
@@ -18,17 +22,17 @@
 # 🇬🇧 English Version
 
 ## 📌 Overview
-**Monster GYM** is a native Android application designed to log, manage, and master your gym workout routines easily, intuitively, and persistently. Built with Java, Material Design 3, and SQLite database storage, it ensures your training logs and routine customisations are permanently preserved.
+**Monster GYM** is a native Android application designed to log, manage, and master your gym workout routines easily, intuitively, and persistently. Built with Java, Material Design 3, ViewBinding, and SQLite database storage, it ensures your training logs and routine customisations are permanently preserved.
 
 ## ✨ Key Features
 - 📋 **Routine Management & Calendar Abbreviations**: Create, edit, duplicate, and delete workout routines. Each routine includes custom calendar abbreviations (e.g., **SUP** for Upper Body, **INF** for Lower Body).
 - 🔄 **Drag & Drop Reordering**: Seamlessly reorder routines, exercises, and exercise variations using touch drag handles powered by `ItemTouchHelper`.
-- 😈 **Dynamic Devil Image Selector**: Customize routine, exercise, and variation avatars by choosing from all available mascot illustrations. New devil images added to the project are automatically discovered at runtime via reflection.
+- 😈 **Dynamic Devil Image Selector**: Customize routine, exercise, and variation avatars by choosing from available mascot illustrations. Custom picture selections are preserved across JSON exports and imports.
 - 🏋️ **Exercises & Extra Tags**: Add exercises to any routine, featuring a dedicated **EXTRA** badge for accessory exercises.
-- ⚖️ **Set Weights in Kilograms (kg) or Pounds (lbs)**: Dynamically configure sets, repetitions, and individual weights per set in kg or lbs.
+- ⚖️ **Set Weights & Per-Set Tracking**: Dynamically configure sets, repetitions, and individual weights per set.
 - 📅 **Main Screen Workout Calendar & Counters**: Interactive Monday-starting monthly calendar directly on the dashboard, displaying workout abbreviations inside orange circles for completed days.
-- ⚙️ **Settings & JSON Backup**: Settings dialog featuring weight unit toggle, routine JSON export to Downloads, routine JSON file import, and developer credits.
-- 💾 **Real-time SQLite Persistence**: Automatic local persistence using SQLite (`kobasgym.db`) alongside continuous JSON exports (`gymRoutine.json`).
+- ⚙️ **Settings & JSON Backup**: Settings dialog featuring weight unit configuration, routine JSON backup export to Downloads, routine JSON file import, and developer credits.
+- 💾 **Real-time SQLite Persistence**: Automatic local persistence using SQLite (`kobasgym.db`) alongside synchronized continuous JSON exports (`gymRoutine.json`).
 
 ## 📁 App Structure
 ```text
@@ -37,29 +41,57 @@ com.example.kobasgym/
 ├── data/        # SQLite Database Helper & Workout Data Manager (JSON & SQLite)
 ├── model/       # Data classes (Routine, Exercise, ExerciseVariation, WorkoutLog, CalendarDay)
 ├── ui/          # Activities (MainOptions, RoutinesList, RoutineDetail, VariationsList, VariationDetail, Calendar, Welcome)
-└── utils/       # Helpers (DevilImagePickerHelper, DiablilloNotificationHelper, LocaleManager)
+└── utils/       # Helpers (DevilImagePickerHelper)
 ```
 
 ## 🛠️ Prerequisites & Tech Stack
-- **Prerequisites**: Android Studio (Koala/Jellyfish+), Android SDK (Min SDK 24, Target SDK 34+), Java 17 JDK, Physical Device or Emulator (API 24+).
-- **Language**: Java 17+
+- **Prerequisites**: Android Studio (Koala / Jellyfish or newer), Android SDK (Min SDK 24, Target SDK 34/37), Java JDK 11/17, Physical Device or Emulator (API 24+).
+- **Language**: Java
 - **UI Framework**: Android ViewBinding, Material Components 3
 - **Database**: SQLite (`SQLiteOpenHelper`)
 - **Data Interchange**: JSON
+
+## 🚀 How to Build and Run
+1. Clone the repository to your local machine:
+   ```bash
+   git clone https://github.com/your-username/MonsterGYM.git
+   ```
+2. Open the project folder in **Android Studio**.
+3. Allow Gradle to sync dependencies automatically.
+4. Select an Android device or emulator running API 24 or higher.
+5. Click **Run > Run 'app'** or run via Gradle Wrapper:
+   ```bash
+   ./gradlew assembleDebug
+   ```
+
+## 📸 Screenshots
+
+| App Icon | Main Feature Illustration |
+| :---: | :---: |
+| ![App Icon](app/src/main/ic_logo-playstore.png) | ![Feature Illustration](app/src/main/ic_extra-playstore.png) |
+
+| Dashboard Screen | Routines List | Exercise Details |
+| :---: | :---: | :---: |
+| *[Add Screenshot: docs/screenshots/main_dashboard.png]* | *[Add Screenshot: docs/screenshots/routines_list.png]* | *[Add Screenshot: docs/screenshots/exercise_details.png]* |
+
+## 🔮 Future Improvements
+- 📊 Advanced statistical charts for strength progress over time.
+- ⏱️ Built-in rest timer with sound/vibration alerts between sets.
+- ☁️ Cloud sync support (e.g. Firebase or Google Drive backup).
 
 ---
 
 # 🇪🇸 Versión en Español
 
 ## 📌 Descripción General
-**Monster GYM** es una aplicación nativa para Android diseñada para ayudarte a registrar, gestionar y dominar tus entrenamientos en el gimnasio de forma rápida, intuitiva y persistente. Desarrollada en Java, Material Design 3 y SQLite.
+**Monster GYM** es una aplicación nativa para Android diseñada para ayudarte a registrar, gestionar y dominar tus entrenamientos en el gimnasio de forma rápida, intuitiva y persistente. Desarrollada en Java, Material Design 3, ViewBinding y SQLite.
 
 ## ✨ Características Principales
 - 📋 **Gestión de Rutinas y Abreviaturas**: Crea, edita, duplica y elimina rutinas de entrenamiento con abreviaturas personalizadas para el calendario.
 - 🔄 **Reordenamiento por Arrastre (Drag & Drop)**: Reorganiza tus rutinas, ejercicios y variaciones de forma fluida mediante tiradores de arrastre táctiles.
-- 😈 **Selector Dinámico de Diablillos**: Personaliza los avatares de tus rutinas, ejercicios y variaciones eligiendo entre todas las ilustraciones de diablillos disponibles. Las nuevas imágenes añadidas al proyecto se detectan automáticamente.
+- 😈 **Selector Dinámico de Diablillos**: Personaliza los avatares de tus rutinas, ejercicios y variaciones eligiendo entre las ilustraciones de diablillos disponibles. Las fotos personalizadas se conservan en las exportaciones e importaciones JSON.
 - 🏋️ **Ejercicios y Etiqueta EXTRA**: Añade ejercicios y marca elementos accesorios con la etiqueta **EXTRA**.
-- ⚖️ **Series y Pesos (kg / lbs)**: Configura número de series, repeticiones y pesos individuales por serie.
+- ⚖️ **Series y Pesos**: Configura número de series, repeticiones y pesos individuales por serie.
 - 📅 **Calendario y Contadores**: Calendario mensual interactivo en la pantalla principal con abreviaturas en círculos naranjas y contadores de días de entrenamiento.
 - ⚙️ **Ajustes y Respaldo JSON**: Menú de ajustes con exportación e importación de archivos JSON de rutinas.
 - 💾 **Persistencia Real en SQLite**: Almacenamiento local mediante SQLite (`kobasgym.db`) y sincronización con `gymRoutine.json`.
@@ -71,15 +103,43 @@ com.example.kobasgym/
 ├── data/        # Administrador de datos y SQLite (GymDatabaseHelper, WorkoutDataManager)
 ├── model/       # Modelos de datos (Routine, Exercise, ExerciseVariation, WorkoutLog, CalendarDay)
 ├── ui/          # Actividades (MainOptions, RoutinesList, RoutineDetail, VariationsList, VariationDetail, Calendar, Welcome)
-└── utils/       # Utilidades (DevilImagePickerHelper, DiablilloNotificationHelper, LocaleManager)
+└── utils/       # Utilidades (DevilImagePickerHelper)
 ```
 
 ## 🛠️ Requisitos y Tecnologías
-- **Qué se necesita**: Android Studio, Android SDK (Mínimo API 24, Destino API 34+), JDK 17, Dispositivo físico o Emulador Android.
-- **Lenguaje**: Java 17+
+- **Qué se necesita**: Android Studio, Android SDK (Mínimo API 24, Destino API 34/37), JDK 11/17, Dispositivo físico o Emulador Android.
+- **Lenguaje**: Java
 - **Interfaz de Usuario**: Android ViewBinding, Material Components 3
 - **Base de Datos**: SQLite (`SQLiteOpenHelper`)
 - **Intercambio de Datos**: JSON
+
+## 🚀 Cómo Compilar y Ejecutar
+1. Clona el repositorio en tu equipo:
+   ```bash
+   git clone https://github.com/your-username/MonsterGYM.git
+   ```
+2. Abre la carpeta del proyecto en **Android Studio**.
+3. Deja que Gradle sincronice las dependencias automáticamente.
+4. Selecciona un dispositivo físico o emulador con Android 7.0 (API 24) o superior.
+5. Haz clic en **Run > Run 'app'** o ejecuta la compilación desde la terminal:
+   ```bash
+   ./gradlew assembleDebug
+   ```
+
+## 📸 Capturas de Pantalla
+
+| Logo de la App | Ilustración Principal |
+| :---: | :---: |
+| ![Logo App](app/src/main/ic_logo-playstore.png) | ![Ilustración App](app/src/main/ic_extra-playstore.png) |
+
+| Pantalla Principal | Lista de Rutinas | Detalle del Ejercicio |
+| :---: | :---: | :---: |
+| *[Añadir Captura: docs/screenshots/main_dashboard.png]* | *[Añadir Captura: docs/screenshots/routines_list.png]* | *[Añadir Captura: docs/screenshots/exercise_details.png]* |
+
+## 🔮 Futuras Mejoras
+- 📊 Gráficas estadísticas avanzadas del progreso de fuerza con el tiempo.
+- ⏱️ Temporizador de descanso integrado con alertas sonoras o de vibración entre series.
+- ☁️ Sincronización en la nube (respaldo en Google Drive o Firebase).
 
 ---
 

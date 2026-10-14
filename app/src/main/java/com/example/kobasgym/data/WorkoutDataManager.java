@@ -474,20 +474,6 @@ public class WorkoutDataManager {
         }
     }
 
-    public synchronized Routine getUpperBodyRoutine() {
-        for (Routine routine : routines) {
-            if (routine.getNameResId() == R.string.routine_upper_body) {
-                return routine;
-            }
-        }
-        for (Routine routine : routines) {
-            if ("Upper Body".equalsIgnoreCase(routine.getName()) || "Tren superior".equalsIgnoreCase(routine.getName())) {
-                return routine;
-            }
-        }
-        return !routines.isEmpty() ? routines.get(0) : null;
-    }
-
     public synchronized void saveWorkoutLog(com.example.kobasgym.model.WorkoutLog log) {
         if (dbHelper != null) {
             dbHelper.saveWorkoutLog(log);

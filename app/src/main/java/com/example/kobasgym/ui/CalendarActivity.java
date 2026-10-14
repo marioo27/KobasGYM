@@ -71,7 +71,7 @@ public class CalendarActivity extends BaseActivity implements WorkoutLogAdapter.
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle(R.string.calendar_title);
         }
-        binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
+        binding.toolbar.setNavigationOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
     }
 
     private void setupRecyclerViews() {

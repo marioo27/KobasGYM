@@ -52,7 +52,7 @@ public class RoutinesListActivity extends BaseActivity implements RoutineAdapter
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle(R.string.routines_title);
         }
-        binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
+        binding.toolbar.setNavigationOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
     }
 
     private void setupRecyclerView() {

@@ -248,7 +248,7 @@ public class MainOptionsActivity extends BaseActivity implements CalendarGridAda
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle(R.string.app_name);
         }
-        binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
+        binding.toolbar.setNavigationOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
     }
 
     private void setupCalendarRecyclerView() {
