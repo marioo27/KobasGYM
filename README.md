@@ -65,19 +65,7 @@ com.example.kobasgym/
    ```
 
 ## 📸 Screenshots
-
-| App Icon | Main Feature Illustration |
-| :---: | :---: |
-| ![App Icon](app/src/main/ic_logo-playstore.png) | ![Feature Illustration](app/src/main/ic_extra-playstore.png) |
-
-| Dashboard Screen | Routines List | Exercise Details |
-| :---: | :---: | :---: |
-| *[Add Screenshot: docs/screenshots/main_dashboard.png]* | *[Add Screenshot: docs/screenshots/routines_list.png]* | *[Add Screenshot: docs/screenshots/exercise_details.png]* |
-
-## 🔮 Future Improvements
-- 📊 Advanced statistical charts for strength progress over time.
-- ⏱️ Built-in rest timer with sound/vibration alerts between sets.
-- ☁️ Cloud sync support (e.g. Firebase or Google Drive backup).
+*App screenshots will be added soon.*
 
 ---
 
@@ -127,19 +115,7 @@ com.example.kobasgym/
    ```
 
 ## 📸 Capturas de Pantalla
-
-| Logo de la App | Ilustración Principal |
-| :---: | :---: |
-| ![Logo App](app/src/main/ic_logo-playstore.png) | ![Ilustración App](app/src/main/ic_extra-playstore.png) |
-
-| Pantalla Principal | Lista de Rutinas | Detalle del Ejercicio |
-| :---: | :---: | :---: |
-| *[Añadir Captura: docs/screenshots/main_dashboard.png]* | *[Añadir Captura: docs/screenshots/routines_list.png]* | *[Añadir Captura: docs/screenshots/exercise_details.png]* |
-
-## 🔮 Futuras Mejoras
-- 📊 Gráficas estadísticas avanzadas del progreso de fuerza con el tiempo.
-- ⏱️ Temporizador de descanso integrado con alertas sonoras o de vibración entre series.
-- ☁️ Sincronización en la nube (respaldo en Google Drive o Firebase).
+*Las capturas de pantalla de la aplicación se añadirán próximamente.*
 
 ---
 
