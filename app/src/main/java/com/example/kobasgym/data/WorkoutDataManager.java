@@ -128,12 +128,15 @@ public class WorkoutDataManager {
                     descResId = R.string.routine_desc_lower_body;
                 }
 
+                String imageName = rutObj.optString("imagen", "");
+                int imageRes = getDrawableResId(context, imageName, R.drawable.red_devil_mad);
+
                 Routine routine = new Routine(
                         id,
                         nombre, nameResId,
                         descripcion, descResId,
                         nombre, 0,
-                        R.drawable.red_devil_mad,
+                        imageRes,
                         abbreviation,
                         exercises
                 );
@@ -158,11 +161,14 @@ public class WorkoutDataManager {
             }
         }
 
+        String imageName = exObj.optString("imagen", "");
+        int imageRes = getDrawableResId(appContext, imageName, R.drawable.red_devil_mad);
+
         return new Exercise(
                 id,
                 nombre, 0,
                 "", 0,
-                R.drawable.red_devil_mad,
+                imageRes,
                 variations,
                 isExtra
         );
@@ -200,6 +206,9 @@ public class WorkoutDataManager {
         int sets = setWeights.size();
         double primaryWeight = !setWeights.isEmpty() ? setWeights.get(0) : 0.0;
 
+        String imageName = varObj.optString("imagen", "");
+        int imageRes = getDrawableResId(appContext, imageName, R.drawable.red_devil_mad);
+
         ExerciseVariation variation = new ExerciseVariation(
                 id,
                 nombre, 0,
@@ -210,7 +219,7 @@ public class WorkoutDataManager {
                 restSeconds,
                 notas,
                 0,
-                R.drawable.red_devil_mad
+                imageRes
         );
         variation.setSetWeights(setWeights);
         return variation;
@@ -540,12 +549,15 @@ public class WorkoutDataManager {
                     }
                 }
 
+                String imageName = rutObj.optString("imagen", "");
+                int imageRes = getDrawableResId(appContext, imageName, R.drawable.red_devil_mad);
+
                 Routine routine = new Routine(
                         id,
                         nombre, 0,
                         descripcion, 0,
                         nombre, 0,
-                        R.drawable.red_devil_mad,
+                        imageRes,
                         abbrev,
                         exercises
                 );
@@ -573,6 +585,7 @@ public class WorkoutDataManager {
                 rutObj.put("nombre", r.getName() != null ? r.getName() : "");
                 rutObj.put("descripcion", r.getDescription() != null ? r.getDescription() : "");
                 rutObj.put("abreviatura", r.getAbbreviation() != null ? r.getAbbreviation() : "");
+                rutObj.put("imagen", getImageName(appContext, r.getImageResource()));
 
                 JSONArray ejerciciosArray = new JSONArray();
                 JSONArray ejerciciosExtraArray = new JSONArray();
@@ -582,6 +595,7 @@ public class WorkoutDataManager {
                         JSONObject exObj = new JSONObject();
                         exObj.put("id", ex.getId());
                         exObj.put("nombre", ex.getName() != null ? ex.getName() : "");
+                        exObj.put("imagen", getImageName(appContext, ex.getImageResource()));
 
                         JSONArray variacionesArray = new JSONArray();
                         if (ex.getVariations() != null) {
@@ -590,6 +604,7 @@ public class WorkoutDataManager {
                                 varObj.put("id", var.getId());
                                 varObj.put("nombre", var.getName() != null ? var.getName() : "");
                                 varObj.put("notas", var.getNotes() != null ? var.getNotes() : "");
+                                varObj.put("imagen", getImageName(appContext, var.getImageResource()));
 
                                 JSONArray seriesArray = new JSONArray();
                                 List<Double> weights = var.getSetWeights();
@@ -642,5 +657,24 @@ public class WorkoutDataManager {
                 e.printStackTrace();
             }
         }).start();
+    }
+
+    private String getImageName(Context context, int resId) {
+        if (context == null || resId == 0) return "";
+        try {
+            return context.getResources().getResourceEntryName(resId);
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    private int getDrawableResId(Context context, String imageName, int defaultResId) {
+        if (context == null || TextUtils.isEmpty(imageName)) return defaultResId;
+        try {
+            int resId = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
+            return resId != 0 ? resId : defaultResId;
+        } catch (Exception e) {
+            return defaultResId;
+        }
     }
 }

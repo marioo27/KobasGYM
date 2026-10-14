@@ -5,14 +5,17 @@
             "nombre": "Tren Superior",
             "descripcion": "Lunes y Jueves",
             "abreviatura": "SUP",
+            "imagen": "red_devil_mad",
             "ejercicios": [
                 {
                     "id": "ejercicio_jalon",
                     "nombre": "Jalón",
+                    "imagen": "red_devil_mad",
                     "variaciones": [
                         {
                             "id": "variacion_jalon_maquina",
                             "nombre": "Máquina",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -35,6 +38,7 @@
                         {
                             "id": "variacion_jalon_polea",
                             "nombre": "Polea",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -59,10 +63,12 @@
                 {
                     "id": "ejercicio_remo",
                     "nombre": "Remo",
+                    "imagen": "red_devil_mad",
                     "variaciones": [
                         {
                             "id": "variacion_remo_gironda",
                             "nombre": "Gironda",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -85,6 +91,7 @@
                         {
                             "id": "variacion_remo_maquina",
                             "nombre": "Máquina",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -109,10 +116,12 @@
                 {
                     "id": "ejercicio_press_pecho",
                     "nombre": "Press de pecho",
+                    "imagen": "red_devil_mad",
                     "variaciones": [
                         {
                             "id": "variacion_press_pecho_maquina",
                             "nombre": "Máquina",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -135,6 +144,7 @@
                         {
                             "id": "variacion_press_pecho_mancuernas",
                             "nombre": "Press plano con mancuernas",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -159,10 +169,12 @@
                 {
                     "id": "ejercicio_press_hombro",
                     "nombre": "Press de hombro",
+                    "imagen": "red_devil_mad",
                     "variaciones": [
                         {
                             "id": "variacion_press_hombro_maquina",
                             "nombre": "Máquina",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -185,6 +197,7 @@
                         {
                             "id": "variacion_press_hombro_mancuernas",
                             "nombre": "Mancuernas",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -209,10 +222,12 @@
                 {
                     "id": "ejercicio_aperturas_pecho",
                     "nombre": "Aperturas de pecho",
+                    "imagen": "red_devil_mad",
                     "variaciones": [
                         {
                             "id": "variacion_aperturas_pecho_poleas",
                             "nombre": "Poleas",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -235,6 +250,7 @@
                         {
                             "id": "variacion_aperturas_pecho_mancuernas",
                             "nombre": "Mancuernas en banco plano",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -248,7 +264,7 @@
                                 },
                                 {
                                     "numero": 3,
-                                    "peso_kg":10,
+                                    "peso_kg": 10,
                                     "repeticiones": 10
                                 }
                             ],
@@ -259,10 +275,12 @@
                 {
                     "id": "ejercicio_elevaciones_laterales",
                     "nombre": "Elevaciones laterales",
+                    "imagen": "red_devil_mad",
                     "variaciones": [
                         {
                             "id": "variacion_elevaciones_laterales_polea",
                             "nombre": "Polea",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -285,6 +303,7 @@
                         {
                             "id": "variacion_elevaciones_laterales_mancuernas",
                             "nombre": "Mancuernas",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -309,10 +328,12 @@
                 {
                     "id": "ejercicio_biceps",
                     "nombre": "Bíceps",
+                    "imagen": "red_devil_mad",
                     "variaciones": [
                         {
                             "id": "variacion_biceps_curl_mancuernas",
                             "nombre": "Curl con mancuernas",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -335,6 +356,7 @@
                         {
                             "id": "variacion_biceps_arana_barra_z",
                             "nombre": "Araña con barra Z",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -357,6 +379,7 @@
                         {
                             "id": "variacion_biceps_maquina",
                             "nombre": "Máquina",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -381,10 +404,12 @@
                 {
                     "id": "ejercicio_triceps",
                     "nombre": "Tríceps",
+                    "imagen": "red_devil_mad",
                     "variaciones": [
                         {
                             "id": "variacion_triceps_skull_crusher",
                             "nombre": "Skull crusher",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -407,6 +432,7 @@
                         {
                             "id": "variacion_triceps_extension_polea",
                             "nombre": "Extensión en polea",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -429,6 +455,7 @@
                         {
                             "id": "variacion_triceps_extension_cabeza",
                             "nombre": "Extensión por encima de la cabeza",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -451,6 +478,7 @@
                         {
                             "id": "variacion_triceps_extension_mancuerna",
                             "nombre": "Extensión por encima de la cabeza con mancuerna",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -477,10 +505,12 @@
                 {
                     "id": "ejercicio_extra_martillo",
                     "nombre": "Martillo",
+                    "imagen": "red_devil_mad",
                     "variaciones": [
                         {
                             "id": "variacion_martillo_mancuernas",
                             "nombre": "Con mancuernas",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -503,6 +533,7 @@
                         {
                             "id": "variacion_martillo_polea",
                             "nombre": "Polea",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -527,10 +558,12 @@
                 {
                     "id": "ejercicio_extra_face_pull",
                     "nombre": "Face pull",
+                    "imagen": "red_devil_mad",
                     "variaciones": [
                         {
                             "id": "variacion_face_pull",
                             "nombre": "Face pull",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -559,15 +592,18 @@
             "nombre": "Tren Inferior",
             "descripcion": "Martes y Viernes",
             "abreviatura": "INF",
+            "imagen": "red_devil_mad",
             "ejercicios": [
                 {
                     "id": "ejercicio_sentadilla_asistida",
                     "nombre": "Sentadilla asistida",
+                    "imagen": "red_devil_mad",
                     "notas": "",
                     "variaciones": [
                         {
                             "id": "variacion_sentadilla_asistida",
                             "nombre": "Sentadilla asistida",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -590,6 +626,7 @@
                         {
                             "id": "variacion_sentadilla_prensa",
                             "nombre": "Prensa",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -611,6 +648,7 @@
                         {
                             "id": "variacion_sentadilla_jaca",
                             "nombre": "Jaca",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -635,10 +673,12 @@
                 {
                     "id": "ejercicio_bulgaras",
                     "nombre": "Búlgaras",
+                    "imagen": "red_devil_mad",
                     "variaciones": [
                         {
                             "id": "variacion_bulgaras_split_squat",
                             "nombre": "Split squat estático",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -663,10 +703,12 @@
                 {
                     "id": "ejercicio_curl_pierna",
                     "nombre": "Curl de pierna",
+                    "imagen": "red_devil_mad",
                     "variaciones": [
                         {
                             "id": "variacion_curl_pierna",
                             "nombre": "Curl de pierna",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -691,10 +733,12 @@
                 {
                     "id": "ejercicio_extension_cuadriceps",
                     "nombre": "Extensión de cuádriceps",
+                    "imagen": "red_devil_mad",
                     "variaciones": [
                         {
                             "id": "variacion_extension_cuadriceps",
                             "nombre": "Extensión de cuádriceps",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
@@ -719,10 +763,12 @@
                 {
                     "id": "ejercicio_abductores",
                     "nombre": "Abductores",
+                    "imagen": "red_devil_mad",
                     "variaciones": [
                         {
                             "id": "variacion_abductores",
                             "nombre": "Abductores",
+                            "imagen": "red_devil_mad",
                             "series": [
                                 {
                                     "numero": 1,
