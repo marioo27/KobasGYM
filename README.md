@@ -67,6 +67,17 @@ com.example.kobasgym/
 ## 📸 Screenshots
 *App screenshots will be added soon.*
 
+## 📄 Licensing & Attribution / Licencias y Atribución
+
+- **License**: This project is distributed under the **MIT License**.
+- **Developed by**: Mario García Rodríguez.
+- **Characters & Illustrations**: Based on video assets from Vecteezy: [Monster Stock Videos by Vecteezy](https://www.vecteezy.com/free-videos/monster), with customized versions created for the app.
+
+---
+
+*Developed for comprehensive workout management at Monster GYM.*
+
+
 ---
 
 # 🇪🇸 Versión en Español
@@ -119,10 +130,12 @@ com.example.kobasgym/
 
 ---
 
-## 📄 Licensing & Attribution / Licencias y Atribución
-- **License / Licencia**: Este proyecto se distribuye bajo la **Licencia MIT** (*MIT License*).
+## 📄 Licencias y Atribución
+
+- **Licencia**: Este proyecto se distribuye bajo la **Licencia MIT** (*MIT License*).
 - **Desarrollado por**: Mario García Rodríguez.
 - **Personajes e Ilustraciones**: Basados en recursos de video de Vecteezy: [Monster Stock Videos by Vecteezy](https://www.vecteezy.com/free-videos/monster), con versiones personalizadas para la app.
 
 ---
-*(Desarrollado para la gestión integral de entrenamientos en Monster GYM)*
+
+*Desarrollado para la gestión integral de entrenamientos en Monster GYM.*
