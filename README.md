@@ -34,6 +34,133 @@
 - ⚙️ **Settings & JSON Backup**: Settings dialog featuring weight unit configuration, routine JSON backup export to Downloads, routine JSON file import, and developer credits.
 - 💾 **Real-time SQLite Persistence**: Automatic local persistence using SQLite (`kobasgym.db`) alongside synchronized continuous JSON exports (`gymRoutine.json`).
 
+## 📱 User Requirements
+- Android 7.0 (API 24) or higher.
+- **NO internet connection is required**: all workout data is stored locally on the device.
+- Optional storage permission to export or import JSON backup files.
+
+## 📲 Installation
+
+### Option 1: Download the APK
+You can download the latest version of **Monster GYM** directly from the releases section:
+
+> **[⬇️ Download Monster GYM APK](https://github.com/your-username/MonsterGYM/releases/latest)**  
+> *The APK file will be available here once the first release is generated.*
+
+1. Download the APK on your Android device.
+2. Open the downloaded file.
+3. If requested, allow installation from unknown sources.
+4. Install and open **Monster GYM**.
+
+### Option 2: Clone and Build
+If you prefer to build the application yourself, clone this repository and open it in Android Studio.
+
+```bash
+git clone [https://github.com/your-username/MonsterGYM.git](https://github.com/your-username/MonsterGYM.git)
+cd MonsterGYM
+```
+
+1. Open the project folder in **Android Studio**.
+2. Wait for Gradle to synchronize the dependencies.
+3. Select a physical device or emulator with Android 7.0 (API 24) or higher.
+4. Click **Run > Run 'app'**.
+
+To generate a debug APK from the terminal:
+
+```bash
+./gradlew assembleDebug
+```
+
+The generated APK will be located at:
+
+```text
+app/build/outputs/apk/debug/app-debug.apk
+```
+
+## 📖 How to Use
+1. Create a workout routine and set its name, description, abbreviation, and mascot image.
+2. Add exercises and variations to each routine.
+3. Configure the number of sets, repetitions, and weight for every variation.
+4. Mark completed workout days in the monthly calendar.
+5. Export your routines as a JSON backup from **Settings**.
+6. Import a JSON file to restore or preload your routines on another device.
+
+## 🗂️ JSON Preload Format
+You can preload routines by importing a JSON file from **Settings > Import JSON**.
+
+The file must contain a `rutinas` array. Each routine can include main exercises and optional extra exercises.
+
+```json
+{
+  "rutinas": [
+    {
+      "id": "rutina_tren_superior",
+      "nombre": "Tren Superior",
+      "descripcion": "Lunes y Jueves",
+      "abreviatura": "SUP",
+      "imagen": "red_devil_mad",
+      "ejercicios": [
+        {
+          "id": "ejercicio_jalon",
+          "nombre": "Jalón",
+          "imagen": "red_devil_mad",
+          "variaciones": [
+            {
+              "id": "variacion_jalon_maquina",
+              "nombre": "Máquina",
+              "imagen": "red_devil_mad",
+              "series": [
+                {
+                  "numero": 1,
+                  "peso_kg": 50,
+                  "repeticiones": 10
+                }
+              ],
+              "notas": ""
+            }
+          ]
+        }
+      ],
+      "ejercicios_extra": []
+    }
+  ]
+}
+```
+
+### Field Reference
+
+| Field | Description |
+|---|---|
+| `rutinas` | Main array containing all workout routines. |
+| `id` | Unique identifier for the routine, exercise, or variation. |
+| `nombre` | Display name. |
+| `descripcion` | Optional routine description, such as training days. |
+| `abreviatura` | Short abbreviation shown in the calendar, for example `SUP` or `INF`. |
+| `imagen` | Mascot image identifier, for example `red_devil_mad`. |
+| `ejercicios` | Main exercises included in the routine. |
+| `ejercicios_extra` | Accessory exercises marked with the `EXTRA` badge. |
+| `variaciones` | Exercise variations, such as machine, dumbbell, or cable versions. |
+| `series` | List of sets for each variation. |
+| `numero` | Set number. |
+| `peso_kg` | Weight used in kilograms. Use `0` for bodyweight or unweighted exercises. |
+| `repeticiones` | Number of repetitions. |
+| `notas` | Optional notes for the variation. |
+
+## 🛠️ Tech Stack
+- **Language**: Java
+- **UI Framework**: Android ViewBinding, Material Components 3
+- **Database**: SQLite (`SQLiteOpenHelper`)
+- **Data Interchange**: JSON
+- **Build System**: Gradle 8.x
+- **Minimum Android Version**: API 24
+- **Target Android Version**: API 34/37
+
+## 🧑‍💻 Developer Requirements
+- Android Studio Koala / Jellyfish or newer.
+- Java JDK 11 or 17.
+- Android SDK with minimum API 24 and target API 34/37.
+- A physical Android device or emulator running API 24 or higher.
+
 ## 📁 App Structure
 ```text
 com.example.kobasgym/
@@ -44,31 +171,10 @@ com.example.kobasgym/
 └── utils/       # Helpers (DevilImagePickerHelper)
 ```
 
-## 🛠️ Prerequisites & Tech Stack
-- **Prerequisites**: Android Studio (Koala / Jellyfish or newer), Android SDK (Min SDK 24, Target SDK 34/37), Java JDK 11/17, Physical Device or Emulator (API 24+).
-- **Language**: Java
-- **UI Framework**: Android ViewBinding, Material Components 3
-- **Database**: SQLite (`SQLiteOpenHelper`)
-- **Data Interchange**: JSON
-
-## 🚀 How to Build and Run
-1. Clone the repository to your local machine:
-   ```bash
-   git clone https://github.com/your-username/MonsterGYM.git
-   ```
-2. Open the project folder in **Android Studio**.
-3. Allow Gradle to sync dependencies automatically.
-4. Select an Android device or emulator running API 24 or higher.
-5. Click **Run > Run 'app'** or run via Gradle Wrapper:
-   ```bash
-   ./gradlew assembleDebug
-   ```
-
 ## 📸 Screenshots
 *App screenshots will be added soon.*
 
-## 📄 Licensing & Attribution / Licencias y Atribución
-
+## 📄 Licensing & Attribution
 - **License**: This project is distributed under the **MIT License**.
 - **Developed by**: Mario García Rodríguez.
 - **Characters & Illustrations**: Based on video assets from Vecteezy: [Monster Stock Videos by Vecteezy](https://www.vecteezy.com/free-videos/monster), with customized versions created for the app.
@@ -76,7 +182,6 @@ com.example.kobasgym/
 ---
 
 *Developed for comprehensive workout management at Monster GYM.*
-
 
 ---
 
@@ -95,6 +200,133 @@ com.example.kobasgym/
 - ⚙️ **Ajustes y Respaldo JSON**: Menú de ajustes con exportación e importación de archivos JSON de rutinas.
 - 💾 **Persistencia Real en SQLite**: Almacenamiento local mediante SQLite (`kobasgym.db`) y sincronización con `gymRoutine.json`.
 
+## 📱 Requisitos de Usuario
+- Android 7.0 (API 24) o superior.
+- **NO requiere conexión a Internet**: todos los datos de entrenamiento se guardan localmente en el dispositivo.
+- Permiso de almacenamiento opcional para exportar o importar copias de seguridad en JSON.
+
+## 📲 Instalación
+
+### Opción 1: Descargar la APK
+Puedes descargar la última versión de **Monster GYM** directamente desde la sección de releases:
+
+> **[⬇️ Descargar APK de Monster GYM](https://github.com/your-username/MonsterGYM/releases/latest)**  
+> *El archivo APK estará disponible aquí cuando se genere la primera versión.*
+
+1. Descarga el archivo APK en tu dispositivo Android.
+2. Ábrelo desde el navegador o el gestor de archivos.
+3. Si el sistema lo solicita, permite la instalación de aplicaciones de fuentes desconocidas.
+4. Instala la aplicación y abre **Monster GYM**.
+
+### Opción 2: Clonar y Compilar
+Si prefieres compilar la aplicación tú mismo, clona este repositorio y ábrelo en Android Studio.
+
+```bash
+git clone [https://github.com/your-username/MonsterGYM.git](https://github.com/your-username/MonsterGYM.git)
+cd MonsterGYM
+```
+
+1. Abre la carpeta del proyecto en **Android Studio**.
+2. Espera a que Gradle sincronice las dependencias.
+3. Selecciona un dispositivo físico o emulador con Android 7.0 (API 24) o superior.
+4. Haz clic en **Run > Run 'app'**.
+
+Para generar una APK de depuración desde la terminal:
+
+```bash
+./gradlew assembleDebug
+```
+
+La APK generada estará en:
+
+```text
+app/build/outputs/apk/debug/app-debug.apk
+```
+
+## 📖 Cómo Usarla
+1. Crea una rutina y configura su nombre, descripción, abreviatura e imagen de diablillo.
+2. Añade ejercicios y variaciones a cada rutina.
+3. Configura el número de series, repeticiones y peso de cada variación.
+4. Marca los días de entrenamiento completados en el calendario mensual.
+5. Exporta tus rutinas como copia de seguridad JSON desde **Ajustes**.
+6. Importa un archivo JSON para restaurar o precargar tus rutinas en otro dispositivo.
+
+## 🗂️ Formato JSON para Precargar Datos
+Puedes precargar rutinas importando un archivo JSON desde **Ajustes > Importar JSON**.
+
+El archivo debe contener un array llamado `rutinas`. Cada rutina puede incluir ejercicios principales y, opcionalmente, ejercicios extra.
+
+```json
+{
+  "rutinas": [
+    {
+      "id": "rutina_tren_superior",
+      "nombre": "Tren Superior",
+      "descripcion": "Lunes y Jueves",
+      "abreviatura": "SUP",
+      "imagen": "red_devil_mad",
+      "ejercicios": [
+        {
+          "id": "ejercicio_jalon",
+          "nombre": "Jalón",
+          "imagen": "red_devil_mad",
+          "variaciones": [
+            {
+              "id": "variacion_jalon_maquina",
+              "nombre": "Máquina",
+              "imagen": "red_devil_mad",
+              "series": [
+                {
+                  "numero": 1,
+                  "peso_kg": 50,
+                  "repeticiones": 10
+                }
+              ],
+              "notas": ""
+            }
+          ]
+        }
+      ],
+      "ejercicios_extra": []
+    }
+  ]
+}
+```
+
+### Descripción de los Campos
+
+| Campo | Descripción |
+|---|---|
+| `rutinas` | Array principal con todas las rutinas de entrenamiento. |
+| `id` | Identificador único de la rutina, ejercicio o variación. |
+| `nombre` | Nombre visible en la aplicación. |
+| `descripcion` | Descripción opcional de la rutina, por ejemplo los días de entrenamiento. |
+| `abreviatura` | Abreviatura mostrada en el calendario, por ejemplo `SUP` o `INF`. |
+| `imagen` | Identificador de la imagen del diablillo, por ejemplo `red_devil_mad`. |
+| `ejercicios` | Ejercicios principales incluidos en la rutina. |
+| `ejercicios_extra` | Ejercicios accesorios marcados con la etiqueta `EXTRA`. |
+| `variaciones` | Variantes de cada ejercicio, como máquina, mancuernas o polea. |
+| `series` | Lista de series de cada variación. |
+| `numero` | Número de la serie. |
+| `peso_kg` | Peso utilizado en kilogramos. Usa `0` para ejercicios con peso corporal o sin carga. |
+| `repeticiones` | Número de repeticiones. |
+| `notas` | Notas opcionales para la variación. |
+
+## 🛠️ Tecnologías Utilizadas
+- **Lenguaje**: Java
+- **Interfaz de Usuario**: Android ViewBinding, Material Components 3
+- **Base de Datos**: SQLite (`SQLiteOpenHelper`)
+- **Intercambio de Datos**: JSON
+- **Sistema de Compilación**: Gradle 8.x
+- **Versión Mínima de Android**: API 24
+- **Versión Objetivo de Android**: API 34/37
+
+## 🧑‍💻 Requisitos para Desarrolladores
+- Android Studio Koala / Jellyfish o superior.
+- Java JDK 11 o 17.
+- Android SDK con versión mínima API 24 y versión objetivo API 34/37.
+- Un dispositivo Android físico o emulador con API 24 o superior.
+
 ## 📁 Estructura de la Aplicación
 ```text
 com.example.kobasgym/
@@ -105,33 +337,10 @@ com.example.kobasgym/
 └── utils/       # Utilidades (DevilImagePickerHelper)
 ```
 
-## 🛠️ Requisitos y Tecnologías
-- **Qué se necesita**: Android Studio, Android SDK (Mínimo API 24, Destino API 34/37), JDK 11/17, Dispositivo físico o Emulador Android.
-- **Lenguaje**: Java
-- **Interfaz de Usuario**: Android ViewBinding, Material Components 3
-- **Base de Datos**: SQLite (`SQLiteOpenHelper`)
-- **Intercambio de Datos**: JSON
-
-## 🚀 Cómo Compilar y Ejecutar
-1. Clona el repositorio en tu equipo:
-   ```bash
-   git clone https://github.com/your-username/MonsterGYM.git
-   ```
-2. Abre la carpeta del proyecto en **Android Studio**.
-3. Deja que Gradle sincronice las dependencias automáticamente.
-4. Selecciona un dispositivo físico o emulador con Android 7.0 (API 24) o superior.
-5. Haz clic en **Run > Run 'app'** o ejecuta la compilación desde la terminal:
-   ```bash
-   ./gradlew assembleDebug
-   ```
-
 ## 📸 Capturas de Pantalla
 *Las capturas de pantalla de la aplicación se añadirán próximamente.*
 
----
-
 ## 📄 Licencias y Atribución
-
 - **Licencia**: Este proyecto se distribuye bajo la **Licencia MIT** (*MIT License*).
 - **Desarrollado por**: Mario García Rodríguez.
 - **Personajes e Ilustraciones**: Basados en recursos de video de Vecteezy: [Monster Stock Videos by Vecteezy](https://www.vecteezy.com/free-videos/monster), con versiones personalizadas para la app.
