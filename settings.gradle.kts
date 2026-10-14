@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Koba\'s GYM"
+rootProject.name = "Monster GYM"
 include(":app")

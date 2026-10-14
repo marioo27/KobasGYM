@@ -1,4 +1,4 @@
-# 🏋️‍♂️ Koba's GYM - Android Workout Manager
+# 🏋️‍♂️ Monster GYM - Android Workout Manager
 
 <p align="center">
   <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white"/>
@@ -18,7 +18,7 @@
 # 🇬🇧 English Version
 
 ## 📌 Overview
-**Koba's GYM** is a native Android application designed to log, manage, and master your gym workout routines easily, intuitively, and persistently. Built with Java, Material Design 3, and SQLite database storage, it ensures your training logs and routine customisations are permanently preserved.
+**Monster GYM** is a native Android application designed to log, manage, and master your gym workout routines easily, intuitively, and persistently. Built with Java, Material Design 3, and SQLite database storage, it ensures your training logs and routine customisations are permanently preserved.
 
 ## ✨ Key Features
 - 📋 **Routine Management & Calendar Abbreviations**: Create, edit, duplicate, and delete workout routines. Each routine includes custom calendar abbreviations (e.g., **SUP** for Upper Body, **INF** for Lower Body).
@@ -52,7 +52,7 @@ com.example.kobasgym/
 # 🇪🇸 Versión en Español
 
 ## 📌 Descripción General
-**Koba's GYM** es una aplicación nativa para Android diseñada para ayudarte a registrar, gestionar y dominar tus entrenamientos en el gimnasio de forma rápida, intuitiva y persistente. Desarrollada en Java, Material Design 3 y SQLite.
+**Monster GYM** es una aplicación nativa para Android diseñada para ayudarte a registrar, gestionar y dominar tus entrenamientos en el gimnasio de forma rápida, intuitiva y persistente. Desarrollada en Java, Material Design 3 y SQLite.
 
 ## ✨ Características Principales
 - 📋 **Gestión de Rutinas y Abreviaturas**: Crea, edita, duplica y elimina rutinas de entrenamiento con abreviaturas personalizadas para el calendario.
@@ -89,4 +89,4 @@ com.example.kobasgym/
 - **Personajes e Ilustraciones**: Basados en recursos de video de Vecteezy: [Monster Stock Videos by Vecteezy](https://www.vecteezy.com/free-videos/monster), con versiones personalizadas para la app.
 
 ---
-*(Desarrollado para la gestión integral de entrenamientos en Koba's GYM)*
+*(Desarrollado para la gestión integral de entrenamientos en Monster GYM)*

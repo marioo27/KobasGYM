@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.KobasGYM">
+        android:theme="@style/Theme.MonsterGYM">
 
         <!-- Welcome Screen (Launcher) -->
         <activity

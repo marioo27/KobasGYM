@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ajustes de Koba's GYM"
+        android:text="Ajustes de Monster GYM"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/black"
