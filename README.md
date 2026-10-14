@@ -176,7 +176,7 @@ com.example.kobasgym/
 
 ## 📄 Licensing & Attribution
 - **License**: This project is distributed under the [MIT License](LICENSE).
-- **Developed by**: Mario García Rodríguez.
+- **Developed by**: MGR *(Mario García Rodríguez)*.
 - **Characters & Illustrations**: Based on video assets from Vecteezy: [Monster Stock Videos by Vecteezy](https://www.vecteezy.com/free-videos/monster), with customized versions created for the app.
 
 ---
@@ -342,7 +342,7 @@ com.example.kobasgym/
 
 ## 📄 Licencias y Atribución
 - **Licencia**: Este proyecto se distribuye bajo la [Licencia MIT](License).
-- **Desarrollado por**: Mario García Rodríguez.
+- **Desarrollado por**: MGR *(Mario García Rodríguez)*.
 - **Personajes e Ilustraciones**: Basados en recursos de video de Vecteezy: [Monster Stock Videos by Vecteezy](https://www.vecteezy.com/free-videos/monster), con versiones personalizadas para la app.
 
 ---
