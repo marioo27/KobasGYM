@@ -32,7 +32,7 @@
 - ⚖️ **Set Weights & Per-Set Tracking**: Dynamically configure sets, repetitions, and individual weights per set.
 - 📅 **Main Screen Workout Calendar & Counters**: Interactive Monday-starting monthly calendar directly on the dashboard, displaying workout abbreviations inside orange circles for completed days.
 - ⚙️ **Settings & JSON Backup**: Settings dialog featuring weight unit configuration, routine JSON backup export to Downloads, routine JSON file import, and developer credits.
-- 💾 **Real-time SQLite Persistence**: Automatic local persistence using SQLite (`kobasgym.db`) alongside synchronized continuous JSON exports (`gymRoutine.json`).
+- 💾 **Real-time SQLite Persistence**: Automatic local persistence using SQLite (`monstergym.db`) alongside synchronized continuous JSON exports (`gymRoutine.json`).
 
 ## 📱 User Requirements
 - Android 7.0 (API 24) or higher.
@@ -163,7 +163,7 @@ The file must contain a `rutinas` array. Each routine can include main exercises
 
 ## 📁 App Structure
 ```text
-com.example.kobasgym/
+com.example.monstergym/
 ├── adapter/     # RecyclerView Adapters (Routine, Exercise, Variation, Calendar, WorkoutLog)
 ├── data/        # SQLite Database Helper & Workout Data Manager (JSON & SQLite)
 ├── model/       # Data classes (Routine, Exercise, ExerciseVariation, WorkoutLog, CalendarDay)
@@ -198,7 +198,7 @@ com.example.kobasgym/
 - ⚖️ **Series y Pesos**: Configura número de series, repeticiones y pesos individuales por serie.
 - 📅 **Calendario y Contadores**: Calendario mensual interactivo en la pantalla principal con abreviaturas en círculos naranjas y contadores de días de entrenamiento.
 - ⚙️ **Ajustes y Respaldo JSON**: Menú de ajustes con exportación e importación de archivos JSON de rutinas.
-- 💾 **Persistencia Real en SQLite**: Almacenamiento local mediante SQLite (`kobasgym.db`) y sincronización con `gymRoutine.json`.
+- 💾 **Persistencia Real en SQLite**: Almacenamiento local mediante SQLite (`monstergym.db`) y sincronización con `gymRoutine.json`.
 
 ## 📱 Requisitos de Usuario
 - Android 7.0 (API 24) o superior.
@@ -329,7 +329,7 @@ El archivo debe contener un array llamado `rutinas`. Cada rutina puede incluir e
 
 ## 📁 Estructura de la Aplicación
 ```text
-com.example.kobasgym/
+com.example.monstergym/
 ├── adapter/     # Adaptadores de RecyclerView (Rutinas, Ejercicios, Variaciones, Calendario, Logs)
 ├── data/        # Administrador de datos y SQLite (GymDatabaseHelper, WorkoutDataManager)
 ├── model/       # Modelos de datos (Routine, Exercise, ExerciseVariation, WorkoutLog, CalendarDay)

@@ -4,6 +4,6 @@
 # For more details, see
 #   https://d.android.com/r/tools/r8/keep-rules
 
--keepclassmembers class com.example.kobasgym.R$drawable {
+-keepclassmembers class com.example.monstergym.R$drawable {
     public static <fields>;
 }

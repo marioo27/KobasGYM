@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.kobasgym"
+    namespace = "com.example.monstergym"
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
-        applicationId = "com.example.kobasgym"
+        applicationId = "com.example.monstergym"
         minSdk = 24
         targetSdk = 37
         versionCode = 1
