@@ -39,21 +39,8 @@
 - **NO internet connection is required**: all workout data is stored locally on the device.
 - Optional storage permission to export or import JSON backup files.
 
-## 📲 Installation
-
-### Option 1: Download the APK
-You can download the latest version of **Monster GYM** directly from the releases section:
-
-> **[⬇️ Download Monster GYM APK](https://github.com/your-username/MonsterGYM/releases/latest)**  
-> *The APK file will be available here once the first release is generated.*
-
-1. Download the APK on your Android device.
-2. Open the downloaded file.
-3. If requested, allow installation from unknown sources.
-4. Install and open **Monster GYM**.
-
-### Option 2: Clone and Build
-If you prefer to build the application yourself, clone this repository and open it in Android Studio.
+## 🚀 How to Build and Run
+Clone this repository and open it in Android Studio.
 
 ```bash
 git clone [https://github.com/your-username/MonsterGYM.git](https://github.com/your-username/MonsterGYM.git)
@@ -88,40 +75,40 @@ app/build/outputs/apk/debug/app-debug.apk
 ## 🗂️ JSON Preload Format
 You can preload routines by importing a JSON file from **Settings > Import JSON**.
 
-The file must contain a `rutinas` array. Each routine can include main exercises and optional extra exercises.
+The file must contain a `routines` array. Each routine can include main exercises and optional extra exercises.
 
 ```json
 {
-  "rutinas": [
+  "routines": [
     {
       "id": "rutina_tren_superior",
-      "nombre": "Tren Superior",
-      "descripcion": "Lunes y Jueves",
-      "abreviatura": "SUP",
-      "imagen": "red_devil_mad",
-      "ejercicios": [
+      "name": "Tren Superior",
+      "description": "Lunes y Jueves",
+      "abbreviation": "SUP",
+      "image": "red_devil_mad",
+      "exercises": [
         {
           "id": "ejercicio_jalon",
-          "nombre": "Jalón",
-          "imagen": "red_devil_mad",
-          "variaciones": [
+          "name": "Jalón",
+          "image": "red_devil_mad",
+          "variations": [
             {
               "id": "variacion_jalon_maquina",
-              "nombre": "Máquina",
-              "imagen": "red_devil_mad",
-              "series": [
+              "name": "Máquina",
+              "image": "red_devil_mad",
+              "sets": [
                 {
-                  "numero": 1,
-                  "peso_kg": 50,
-                  "repeticiones": 10
+                  "number": 1,
+                  "weight_kg": 50,
+                  "reps": 10
                 }
               ],
-              "notas": ""
+              "notes": ""
             }
           ]
         }
       ],
-      "ejercicios_extra": []
+      "extra_exercises": []
     }
   ]
 }
@@ -131,20 +118,20 @@ The file must contain a `rutinas` array. Each routine can include main exercises
 
 | Field | Description |
 |---|---|
-| `rutinas` | Main array containing all workout routines. |
+| `routines` | Main array containing all workout routines. |
 | `id` | Unique identifier for the routine, exercise, or variation. |
-| `nombre` | Display name. |
-| `descripcion` | Optional routine description, such as training days. |
-| `abreviatura` | Short abbreviation shown in the calendar, for example `SUP` or `INF`. |
-| `imagen` | Mascot image identifier, for example `red_devil_mad`. |
-| `ejercicios` | Main exercises included in the routine. |
-| `ejercicios_extra` | Accessory exercises marked with the `EXTRA` badge. |
-| `variaciones` | Exercise variations, such as machine, dumbbell, or cable versions. |
-| `series` | List of sets for each variation. |
-| `numero` | Set number. |
-| `peso_kg` | Weight used in kilograms. Use `0` for bodyweight or unweighted exercises. |
-| `repeticiones` | Number of repetitions. |
-| `notas` | Optional notes for the variation. |
+| `name` | Display name. |
+| `description` | Optional routine description, such as training days. |
+| `abbreviation` | Short abbreviation shown in the calendar, for example `SUP` or `INF`. |
+| `image` | Mascot image identifier, for example `red_devil_mad`. |
+| `exercises` | Main exercises included in the routine. |
+| `extra_exercises` | Accessory exercises marked with the `EXTRA` badge. |
+| `variations` | Exercise variations, such as machine, dumbbell, or cable versions. |
+| `sets` | List of sets for each variation. |
+| `number` | Set number. |
+| `weight_kg` | Weight used in kilograms. Use `0` for bodyweight or unweighted exercises. |
+| `reps` | Number of repetitions. |
+| `notes` | Optional notes for the variation. |
 
 ## 🛠️ Tech Stack
 - **Language**: Java
@@ -205,21 +192,8 @@ com.example.monstergym/
 - **NO requiere conexión a Internet**: todos los datos de entrenamiento se guardan localmente en el dispositivo.
 - Permiso de almacenamiento opcional para exportar o importar copias de seguridad en JSON.
 
-## 📲 Instalación
-
-### Opción 1: Descargar la APK
-Puedes descargar la última versión de **Monster GYM** directamente desde la sección de releases:
-
-> **[⬇️ Descargar APK de Monster GYM](https://github.com/your-username/MonsterGYM/releases/latest)**  
-> *El archivo APK estará disponible aquí cuando se genere la primera versión.*
-
-1. Descarga el archivo APK en tu dispositivo Android.
-2. Ábrelo desde el navegador o el gestor de archivos.
-3. Si el sistema lo solicita, permite la instalación de aplicaciones de fuentes desconocidas.
-4. Instala la aplicación y abre **Monster GYM**.
-
-### Opción 2: Clonar y Compilar
-Si prefieres compilar la aplicación tú mismo, clona este repositorio y ábrelo en Android Studio.
+## 🚀 Cómo Compilar y Ejecutar
+Clona este repositorio y ábrelo en Android Studio.
 
 ```bash
 git clone [https://github.com/your-username/MonsterGYM.git](https://github.com/your-username/MonsterGYM.git)
@@ -254,40 +228,40 @@ app/build/outputs/apk/debug/app-debug.apk
 ## 🗂️ Formato JSON para Precargar Datos
 Puedes precargar rutinas importando un archivo JSON desde **Ajustes > Importar JSON**.
 
-El archivo debe contener un array llamado `rutinas`. Cada rutina puede incluir ejercicios principales y, opcionalmente, ejercicios extra.
+El archivo debe contener un array llamado `routines`. Cada rutina puede incluir ejercicios principales y, opcionalmente, ejercicios extra.
 
 ```json
 {
-  "rutinas": [
+  "routines": [
     {
       "id": "rutina_tren_superior",
-      "nombre": "Tren Superior",
-      "descripcion": "Lunes y Jueves",
-      "abreviatura": "SUP",
-      "imagen": "red_devil_mad",
-      "ejercicios": [
+      "name": "Tren Superior",
+      "description": "Lunes y Jueves",
+      "abbreviation": "SUP",
+      "image": "red_devil_mad",
+      "exercises": [
         {
           "id": "ejercicio_jalon",
-          "nombre": "Jalón",
-          "imagen": "red_devil_mad",
-          "variaciones": [
+          "name": "Jalón",
+          "image": "red_devil_mad",
+          "variations": [
             {
               "id": "variacion_jalon_maquina",
-              "nombre": "Máquina",
-              "imagen": "red_devil_mad",
-              "series": [
+              "name": "Máquina",
+              "image": "red_devil_mad",
+              "sets": [
                 {
-                  "numero": 1,
-                  "peso_kg": 50,
-                  "repeticiones": 10
+                  "number": 1,
+                  "weight_kg": 50,
+                  "reps": 10
                 }
               ],
-              "notas": ""
+              "notes": ""
             }
           ]
         }
       ],
-      "ejercicios_extra": []
+      "extra_exercises": []
     }
   ]
 }
@@ -297,20 +271,20 @@ El archivo debe contener un array llamado `rutinas`. Cada rutina puede incluir e
 
 | Campo | Descripción |
 |---|---|
-| `rutinas` | Array principal con todas las rutinas de entrenamiento. |
+| `routines` | Array principal con todas las rutinas de entrenamiento. |
 | `id` | Identificador único de la rutina, ejercicio o variación. |
-| `nombre` | Nombre visible en la aplicación. |
-| `descripcion` | Descripción opcional de la rutina, por ejemplo los días de entrenamiento. |
-| `abreviatura` | Abreviatura mostrada en el calendario, por ejemplo `SUP` o `INF`. |
-| `imagen` | Identificador de la imagen del diablillo, por ejemplo `red_devil_mad`. |
-| `ejercicios` | Ejercicios principales incluidos en la rutina. |
-| `ejercicios_extra` | Ejercicios accesorios marcados con la etiqueta `EXTRA`. |
-| `variaciones` | Variantes de cada ejercicio, como máquina, mancuernas o polea. |
-| `series` | Lista de series de cada variación. |
-| `numero` | Número de la serie. |
-| `peso_kg` | Peso utilizado en kilogramos. Usa `0` para ejercicios con peso corporal o sin carga. |
-| `repeticiones` | Número de repeticiones. |
-| `notas` | Notas opcionales para la variación. |
+| `name` | Nombre visible en la aplicación. |
+| `description` | Descripción opcional de la rutina, por ejemplo los días de entrenamiento. |
+| `abbreviation` | Abreviatura mostrada en el calendario, por ejemplo `SUP` o `INF`. |
+| `image` | Identificador de la imagen del diablillo, por ejemplo `red_devil_mad`. |
+| `exercises` | Ejercicios principales incluidos en la rutina. |
+| `extra_exercises` | Ejercicios accesorios marcados con la etiqueta `EXTRA`. |
+| `variations` | Variantes de cada ejercicio, como máquina, mancuernas o polea. |
+| `sets` | Lista de series de cada variación. |
+| `number` | Número de la serie. |
+| `weight_kg` | Peso utilizado en kilogramos. Usa `0` para ejercicios con peso corporal o sin carga. |
+| `reps` | Número de repeticiones. |
+| `notes` | Notas opcionales para la variación. |
 
 ## 🛠️ Tecnologías Utilizadas
 - **Lenguaje**: Java
