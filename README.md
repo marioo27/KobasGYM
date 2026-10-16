@@ -1,7 +1,7 @@
 # 🏋️‍♂️ Monster GYM - Android Workout Manager
 
 <p align="center">
-  <img src="app/src/main/ic_logo-playstore.png" alt="Monster GYM Logo" width="120"/>
+  <img src="app/src/main/res/mipmap-xxxhdpi/ic_logo.webp" alt="Monster GYM Logo" width="120"/>
 </p>
 
 <p align="center">
